@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESG & Sustainability Consulting — Zenith Blueprint Singapore</title>
+  <meta name="description" content="Singapore ESG consulting for SMEs — materiality assessment, sustainability strategy, GRI/TCFD reporting, and grant-linked green transformation. Practical. Not performative." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS (identical to index.html)
+    ───────────────────────────────────────────── */
+    :root {
+      --midnight:   #FAF9F6;
+      --steel:      #FFFFFF;
+      --gold:       #0E7C66;
+      --gold-light: #0A5F4F;
+      --sage:       #0E7C66;
+      --sage-light: #0A6553;
+      --sage-dark:  #084C3F;
+      --chalk:      #11293E;
+      --chalk-dim:  #46586A;
+      --white:      #FFFFFF;
+      --text-muted: #7A8896;
+
+      --font-heading: 'Sora', sans-serif;
+      --font-accent:  'Sora', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --nav-h:       72px;
+      --section-pad: 96px;
+      --radius:      4px;
+      --radius-lg:   10px;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--midnight);
+      color: var(--chalk);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .gold-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .sage-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-gold  { background: var(--gold); color: var(--midnight); }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-sage  { background: var(--sage); color: var(--white); }
+    .btn-sage:hover { background: var(--sage-light); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--midnight); }
+    .btn-outline-sage {
+      background: transparent;
+      color: var(--sage-light);
+      border: 1.5px solid var(--sage-light);
+    }
+    .btn-outline-sage:hover { background: var(--sage); color: var(--white); }
+
+    /* ─────────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E7E4DC;
+      display: flex; align-items: center;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .logo-text .l1 { font-family: var(--font-heading); font-weight: 800; font-size: 18px; letter-spacing: 0.06em; color: var(--chalk); }
+    .logo-text .l2 { font-family: var(--font-heading); font-weight: 600; font-size: 9.5px; letter-spacing: 0.42em; color: var(--sage); }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-family: var(--font-heading); font-weight: 600; font-size: 14px; color: #46586A; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-links a.active { color: var(--sage); }
+    .nav-cta { margin-left: 8px; padding: 10px 22px; font-size: 14px; }
+
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-burger span { display: block; width: 24px; height: 2.5px; background: var(--chalk); margin: 5px 0; border-radius: 2px; transition: 0.25s; }
+
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+      background: #FFFFFF; border-bottom: 1px solid #E7E4DC; box-shadow: 0 8px 24px rgba(17,41,62,0.08);
+      padding: 12px 24px 24px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 13px 4px; font-family: var(--font-heading); font-weight: 600; font-size: 16px; color: var(--chalk); border-bottom: 1px solid #E7E4DC; }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--sage); }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    #hero {
+      padding-top: calc(var(--nav-h) + 72px);
+      padding-bottom: 80px;
+      background: var(--midnight);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(14,124,102,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14,124,102,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      right: -10%;
+      top: 20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(14,124,102,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-breadcrumb a { transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: var(--chalk); }
+    .hero-breadcrumb .sep { color: rgba(255,255,255,0.2); }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow .line { width: 28px; height: 1.5px; background: var(--sage); }
+    .hero-eyebrow span:last-child {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--sage-light);
+      text-transform: uppercase;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 20px;
+    }
+    .hero-h1 em {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: clamp(48px, 6vw, 76px);
+      color: var(--sage-light);
+      font-weight: 500;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--chalk-dim);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero right: stat cards */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .hero-stat {
+      background: rgba(14,124,102,0.08);
+      border: 1px solid rgba(14,124,102,0.2);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .hero-stat-num {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      letter-spacing: 0.02em;
+      color: var(--sage-light);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROBLEM STRIP
+    ───────────────────────────────────────────── */
+    #problem {
+      padding: 72px 0;
+      background: #FFFFFF;
+    }
+
+    .problem-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .problem-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 16px;
+    }
+    .problem-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .problem-card {
+      background: rgba(17,41,62,0.03);
+      border: 1px solid rgba(17,41,62,0.07);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+    }
+    .problem-card .p-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .problem-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      color: var(--chalk);
+      margin-bottom: 8px;
+    }
+    .problem-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────────
+       JOURNEY / 5-PILLAR
+    ───────────────────────────────────────────── */
+    #journey {
+      padding: var(--section-pad) 0;
+      background: var(--midnight);
+    }
+
+    .journey-header {
+      max-width: 600px;
+      margin-bottom: 60px;
+    }
+    .journey-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 16px;
+    }
+    .journey-header p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    /* vertical connector line */
+    .pillars::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 56px;
+      bottom: 56px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--sage) 0%, rgba(14,124,102,0.1) 100%);
+    }
+
+    .pillar-row {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 28px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(17,41,62,0.05);
+      position: relative;
+    }
+    .pillar-row:last-child { border-bottom: none; }
+
+    .pillar-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--sage-dark);
+      border: 2px solid var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--chalk);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar-body {}
+    .pillar-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      color: var(--chalk);
+      margin-bottom: 4px;
+    }
+    .pillar-subtitle {
+      font-size: 13px;
+      color: var(--sage-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--font-heading);
+      margin-bottom: 10px;
+    }
+    .pillar-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+      max-width: 640px;
+    }
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pillar-tag {
+      font-size: 11px;
+      font-family: var(--font-heading);
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(14,124,102,0.12);
+      border: 1px solid rgba(14,124,102,0.25);
+      color: var(--sage-light);
+    }
+
+    /* ─────────────────────────────────────────────
+       PRICING
+    ───────────────────────────────────────────── */
+    #pricing {
+      padding: var(--section-pad) 0;
+      background: #FFFFFF;
+    }
+
+    .pricing-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    .pricing-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 16px;
+    }
+    .pricing-header p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: rgba(17,41,62,0.03);
+      border: 1px solid rgba(17,41,62,0.08);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .pricing-card:hover {
+      border-color: rgba(14,124,102,0.4);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      background: rgba(14,124,102,0.08);
+      border-color: var(--sage);
+    }
+    .pricing-card.featured:hover { border-color: var(--sage-light); }
+
+    .pricing-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sage);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--sage-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .pricing-name {
+      font-family: var(--font-heading);
+      font-size: 34px;
+      letter-spacing: 0.04em;
+      color: var(--chalk);
+      margin-bottom: 8px;
+    }
+
+    .pricing-tagline {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: rgba(17,41,62,0.07);
+      margin-bottom: 24px;
+    }
+
+    .pricing-scope {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--chalk-dim);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(17,41,62,0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+
+    .pricing-features li .check {
+      color: var(--sage-light);
+      font-size: 12px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .pricing-features li.dimmed { color: var(--text-muted); opacity: 0.5; }
+    .pricing-features li.dimmed .check { color: rgba(122,136,150,0.4); }
+
+    .pricing-price {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .pricing-price .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .pricing-price .amount {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      color: var(--chalk);
+    }
+
+    .pricing-cta { display: block; text-align: center; }
+
+    /* ─────────────────────────────────────────────
+       ADD-ONS
+    ───────────────────────────────────────────── */
+    #addons {
+      padding: 64px 0;
+      background: var(--midnight);
+    }
+
+    .addons-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .addons-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+    }
+
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .addon-card {
+      background: rgba(17,41,62,0.03);
+      border: 1px solid rgba(17,41,62,0.07);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .addon-card:hover { border-color: rgba(14,124,102,0.3); }
+    .addon-card .addon-icon { font-size: 26px; margin-bottom: 10px; }
+    .addon-card h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--chalk);
+      margin-bottom: 6px;
+    }
+    .addon-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ─────────────────────────────────────────────
+       PROCESS
+    ───────────────────────────────────────────── */
+    #process {
+      padding: var(--section-pad) 0;
+      background: #FFFFFF;
+    }
+
+    .process-header {
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 56px;
+    }
+    .process-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 14px;
+    }
+    .process-header p { font-size: 15px; color: var(--text-muted); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--sage) 0%, rgba(14,124,102,0.2) 100%);
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .process-step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--midnight);
+      border: 2px solid var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--sage-light);
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      color: var(--chalk);
+      margin-bottom: 8px;
+    }
+    .process-step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─────────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────────── */
+    #faq {
+      padding: var(--section-pad) 0;
+      background: var(--midnight);
+    }
+
+    .faq-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-left h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .faq-left p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(17,41,62,0.07);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      color: var(--chalk);
+      list-style: none;
+      user-select: none;
+    }
+    .faq-question::-webkit-details-marker { display: none; }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(14,124,102,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--sage-light);
+      flex-shrink: 0;
+      transition: transform 0.25s, background 0.2s;
+    }
+
+    details[open] .faq-icon {
+      transform: rotate(45deg);
+      background: var(--sage-dark);
+    }
+
+    .faq-answer {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-bottom: 20px;
+    }
+
+    /* ─────────────────────────────────────────────
+       CTA BANNER
+    ───────────────────────────────────────────── */
+    #cta-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(14,124,102,0.15) 0%, rgba(255,255,255,0.8) 100%);
+      border-top: 1px solid rgba(14,124,102,0.2);
+      border-bottom: 1px solid rgba(14,124,102,0.2);
+      text-align: center;
+    }
+    .cta-banner-inner h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      margin-bottom: 16px;
+    }
+    .cta-banner-inner p {
+      font-size: 16px;
+      color: var(--chalk-dim);
+      margin-bottom: 36px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-banner-inner .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    footer {
+      background: var(--midnight);
+      border-top: 1px solid rgba(14,124,102,0.15);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--chalk); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(17,41,62,0.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--text-muted); }
+    .uen { font-size: 12px; color: rgba(122,136,150,0.5); }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      :root { --section-pad: 72px; }
+
+      .nav-links { display: none; }
+      .nav-cta   { display: none; }
+      .nav-burger { display: block; }
+
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { display: none; }
+
+      .problem-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .pillars::before { display: none; }
+      .pillar-row { grid-template-columns: 48px 1fr; gap: 16px; }
+
+      .pricing-grid { grid-template-columns: 1fr; gap: 24px; max-width: 480px; margin: 0 auto; }
+
+      .addons-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .process-steps::before { display: none; }
+
+      .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { text-align: center; }
+
+      .addons-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+      .cta-banner-inner .cta-btns { flex-direction: column; align-items: center; }
+
+      .hero-breadcrumb { font-size: 11px; }
+    }
+  </style>
+
+<style>
+/* ── Clean & Light overrides ── */
+h1,h2,h3,h4,h5,.btn,.nav-cta{font-weight:700;}
+body{font-weight:400;}
+nav{background:rgba(250,249,246,0.92) !important;border-bottom:1px solid #E7E4DC !important;}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:200;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,0.45);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:30px;height:30px;fill:#fff;}
+</style>
+
+<style>
+/* ── Footer: navy brand band (matches homepage) ── */
+footer{background:#11293E !important;border-top:none !important;}
+footer .logo-text .l1{color:#FFFFFF !important;}
+footer .logo-text .l2{color:#4FB99F !important;}
+footer h4{color:#FFFFFF !important;}
+footer .footer-tagline,footer .footer-tagline-text{color:#4FB99F !important;}
+footer p,footer li,footer span,footer a{color:#9FB0C0;}
+footer a:hover{color:#FFFFFF !important;}
+.early-bird-banner p{color:#FFFFFF !important;}
+.early-bird-banner span{color:#D7EEE8 !important;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Zenith Blueprint Home">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 33 L20 9 L34 33" fill="none" stroke="#0E7C66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="5" r="3" fill="#0E7C66"/>
+      </svg>
+      <div class="logo-text">
+        <span class="l1">ZENITH</span>
+        <span class="l2">BLUEPRINT</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="#pricing" class="active">ESG Packages</a></li>
+      <li><a href="#journey">Our Approach</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <a href="index.html#contact" class="btn btn-sage nav-cta">Book a Consultation</a>
+
+    <button class="nav-burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="#pricing">ESG Packages</a>
+  <a href="#journey">Our Approach</a>
+  <a href="#faq">FAQ</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="index.html#contact" style="color:var(--sage);">Book a Consultation</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="index.html#services">Services</a>
+      <span class="sep">›</span>
+      <span style="color:var(--sage-light);">ESG &amp; Sustainability</span>
+    </div>
+
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="line"></span>
+          <span>ESG &amp; Sustainability Consulting</span>
+        </div>
+
+        <h1 class="hero-h1">
+          Sustainability that<br>
+          <em>actually gets</em><br>
+          implemented.
+        </h1>
+
+        <p class="hero-sub">
+          We help Singapore SMEs move beyond compliance checklists — building
+          ESG strategies that create real business value, satisfy regulators,
+          and unlock green grants and recognition.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#pricing" class="btn btn-sage">View Packages</a>
+          <a href="index.html#contact" class="btn btn-outline">Book Free Consultation</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">Pillar framework — from awareness to recognition</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">SGX</div>
+          <div class="hero-stat-label">Reporting-aligned for Singapore-listed companies</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">GRI</div>
+          <div class="hero-stat-label">Global Reporting Initiative aligned reporting</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">SME</div>
+          <div class="hero-stat-label">Grant-linked pathways — Enterprise Singapore &amp; BCA</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PROBLEM
+════════════════════════════════════════ -->
+<section id="problem">
+  <div class="container">
+
+    <div class="problem-header">
+      <span class="section-label">Why ESG Feels Hard</span>
+      <div class="gold-rule" style="margin: 0 auto 16px;"></div>
+      <h2>Sustainability matters. But it often gets stuck.</h2>
+      <p>These are the three blockers we hear from Singapore SMEs every week.</p>
+    </div>
+
+    <div class="problem-grid">
+
+      <div class="problem-card">
+        <div class="p-icon">🌀</div>
+        <h4>Frameworks & Jargon Overwhelm</h4>
+        <p>GRI, TCFD, ISSB, MAS guidelines, SGX requirements — the acronym soup is real. Without expert guidance, most teams don't know where to start.</p>
+      </div>
+
+      <div class="problem-card">
+        <div class="p-icon">🧩</div>
+        <h4>Unclear Roles, Fragmented Efforts</h4>
+        <p>ESG ownership is scattered. Marketing says one thing, operations another. Without a shared roadmap, efforts stay siloed and never add up to real progress.</p>
+      </div>
+
+      <div class="problem-card">
+        <div class="p-icon">📄</div>
+        <h4>Reports That Don't Drive Action</h4>
+        <p>Companies produce reports to tick boxes, but the data doesn't feed back into decision-making. Sustainability stays a comms exercise instead of a business strategy.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     5-PILLAR JOURNEY
+════════════════════════════════════════ -->
+<section id="journey">
+  <div class="container">
+
+    <div class="journey-header">
+      <span class="section-label">The Zenith Blueprint ESG Approach</span>
+      <div class="sage-rule"></div>
+      <h2>A structured path from awareness to impact</h2>
+      <p>
+        Rather than jumping straight to reporting, we build from the ground up — ensuring
+        your team understands why, your strategy is sound, and your efforts create
+        lasting business value.
+      </p>
+    </div>
+
+    <div class="pillars">
+
+      <div class="pillar-row">
+        <div class="pillar-num">01</div>
+        <div class="pillar-body">
+          <div class="pillar-subtitle">Pillar One</div>
+          <div class="pillar-title">Awareness</div>
+          <p class="pillar-desc">
+            Build ESG literacy across your organisation. We run tailored workshops for leadership,
+            your Green Manager, and frontline teams — making sure everyone understands the why,
+            the regulatory landscape in Singapore, and their role in your sustainability journey.
+          </p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">ESG Workshops</span>
+            <span class="pillar-tag">Green Manager Training</span>
+            <span class="pillar-tag">Regulatory Landscape (SG)</span>
+            <span class="pillar-tag">Benchmarking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-row">
+        <div class="pillar-num">02</div>
+        <div class="pillar-body">
+          <div class="pillar-subtitle">Pillar Two</div>
+          <div class="pillar-title">Strategy</div>
+          <p class="pillar-desc">
+            Define what matters most for your business. We conduct a materiality assessment,
+            map your ESG baseline, set up governance, and build a detailed roadmap with clear
+            priorities, timelines, and accountability. Strategy that fits your industry,
+            not a generic template.
+          </p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Materiality Assessment</span>
+            <span class="pillar-tag">ESG Baseline</span>
+            <span class="pillar-tag">Governance Setup</span>
+            <span class="pillar-tag">Gap Analysis</span>
+            <span class="pillar-tag">Strategy & Roadmap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-row">
+        <div class="pillar-num">03</div>
+        <div class="pillar-body">
+          <div class="pillar-subtitle">Pillar Three</div>
+          <div class="pillar-title">Deployment</div>
+          <p class="pillar-desc">
+            Turn strategy into everyday operations. We embed ESG across your business functions —
+            supply chain, HR, finance, procurement — and build internal capacity so your team
+            can own and sustain the work independently over time.
+          </p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Roadmap Implementation</span>
+            <span class="pillar-tag">Cross-function Integration</span>
+            <span class="pillar-tag">Capacity Building</span>
+            <span class="pillar-tag">Tools & Templates</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-row">
+        <div class="pillar-num">04</div>
+        <div class="pillar-body">
+          <div class="pillar-subtitle">Pillar Four</div>
+          <div class="pillar-title">Reporting</div>
+          <p class="pillar-desc">
+            Measure what matters and communicate it with confidence. We set up your performance
+            tracking system, prepare your annual sustainability report, and align to key
+            frameworks including GRI, TCFD, SGX sustainability reporting guidelines, and
+            MAS requirements — giving stakeholders and regulators what they need.
+          </p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Annual Sustainability Report</span>
+            <span class="pillar-tag">GRI Alignment</span>
+            <span class="pillar-tag">TCFD Alignment</span>
+            <span class="pillar-tag">SGX Reporting</span>
+            <span class="pillar-tag">Performance Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-row">
+        <div class="pillar-num">05</div>
+        <div class="pillar-body">
+          <div class="pillar-subtitle">Pillar Five</div>
+          <div class="pillar-title">Recognition</div>
+          <p class="pillar-desc">
+            Turn your ESG progress into external credibility. We support ESG ratings applications,
+            sustainability awards, tender ESG questionnaires, and RFP responses — so your
+            sustainability investment translates directly into business-winning recognition.
+          </p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">ESG Ratings Applications</span>
+            <span class="pillar-tag">Awards & Certifications</span>
+            <span class="pillar-tag">Tender & RFP Support</span>
+            <span class="pillar-tag">Grant-Linked ESG</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PRICING
+════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+
+    <div class="pricing-header">
+      <span class="section-label">Our Packages</span>
+      <div class="gold-rule" style="margin: 0 auto 16px;"></div>
+      <h2>Meet you where you are</h2>
+      <p>
+        Three engagement tiers designed for different stages of your ESG journey.
+        All engagements are available on a <strong style="color:var(--chalk);">retainer basis</strong>
+        for ongoing support, or as <strong style="color:var(--chalk);">project-based</strong> engagements
+        for specific initiatives.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- START -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Tier 01</div>
+        <div class="pricing-name">Start</div>
+        <div class="pricing-tagline">For companies exploring ESG for the first time</div>
+        <div class="pricing-divider"></div>
+
+        <div class="pricing-scope">Awareness + initial Strategy</div>
+
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> ESG awareness workshop (half-day)</li>
+          <li><span class="check">✓</span> Singapore regulatory landscape briefing</li>
+          <li><span class="check">✓</span> Materiality scan (desktop assessment)</li>
+          <li><span class="check">✓</span> Quick gap overview vs. key frameworks</li>
+          <li><span class="check">✓</span> ESG roadmap outline</li>
+          <li><span class="check">✓</span> Intro to reporting standards</li>
+          <li><span class="check">✓</span> Overview of ratings landscape</li>
+          <li class="dimmed"><span class="check">–</span> Full materiality assessment</li>
+          <li class="dimmed"><span class="check">–</span> Annual sustainability report</li>
+          <li class="dimmed"><span class="check">–</span> Ratings applications support</li>
+        </ul>
+
+        <div class="pricing-price">
+          <div class="label">Starting from</div>
+          <div class="amount">Contact us for pricing</div>
+        </div>
+
+        <a href="index.html#contact" class="btn btn-outline-sage pricing-cta">Get Started →</a>
+      </div>
+
+      <!-- SHAPE -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <div class="pricing-tier">Tier 02</div>
+        <div class="pricing-name">Shape</div>
+        <div class="pricing-tagline">For businesses ready to formalise their strategy</div>
+        <div class="pricing-divider"></div>
+
+        <div class="pricing-scope">Full Strategy + Internal Reporting</div>
+
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Tailored ESG training & workshops</li>
+          <li><span class="check">✓</span> Full materiality assessment</li>
+          <li><span class="check">✓</span> ESG governance setup</li>
+          <li><span class="check">✓</span> Gap analysis & detailed strategy</li>
+          <li><span class="check">✓</span> 12-month roadmap with KPIs</li>
+          <li><span class="check">✓</span> Integration advisory sessions</li>
+          <li><span class="check">✓</span> Tools & templates for rollout</li>
+          <li><span class="check">✓</span> Performance tracking dashboard</li>
+          <li><span class="check">✓</span> Guidance on sustainability reporting</li>
+          <li class="dimmed"><span class="check">–</span> Annual sustainability report production</li>
+          <li class="dimmed"><span class="check">–</span> Ratings & awards applications</li>
+        </ul>
+
+        <div class="pricing-price">
+          <div class="label">Starting from</div>
+          <div class="amount">Contact us for pricing</div>
+        </div>
+
+        <a href="index.html#contact" class="btn btn-sage pricing-cta">Shape Your Strategy →</a>
+      </div>
+
+      <!-- SUSTAIN -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Tier 03</div>
+        <div class="pricing-name">Sustain</div>
+        <div class="pricing-tagline">For organisations embedding ESG at scale</div>
+        <div class="pricing-divider"></div>
+
+        <div class="pricing-scope">Ongoing Deployment, Reporting & Recognition</div>
+
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Shape</li>
+          <li><span class="check">✓</span> Benchmarks & trends analysis</li>
+          <li><span class="check">✓</span> Full roadmap implementation support</li>
+          <li><span class="check">✓</span> Cross-function ESG integration</li>
+          <li><span class="check">✓</span> Capacity building & ongoing advisory</li>
+          <li><span class="check">✓</span> Annual sustainability report (GRI/TCFD)</li>
+          <li><span class="check">✓</span> SGX reporting compliance</li>
+          <li><span class="check">✓</span> ESG ratings applications</li>
+          <li><span class="check">✓</span> Awards & certifications support</li>
+          <li><span class="check">✓</span> Tender, RFP & questionnaire support</li>
+          <li><span class="check">✓</span> Grant-linked ESG (Enterprise SG, BCA)</li>
+        </ul>
+
+        <div class="pricing-price">
+          <div class="label">Starting from</div>
+          <div class="amount">Contact us for pricing</div>
+        </div>
+
+        <a href="index.html#contact" class="btn btn-outline pricing-cta">Go Full Scale →</a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:13px;color:var(--text-muted);">
+      All packages customised to your industry and maturity level. <a href="index.html#contact" style="color:var(--sage-light);border-bottom:1px solid rgba(14,124,102,0.3);">Let's talk to find the right fit.</a>
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ADD-ONS
+════════════════════════════════════════ -->
+<section id="addons">
+  <div class="container">
+
+    <div class="addons-header">
+      <span class="section-label">Also Available</span>
+      <h2 style="font-family:var(--font-heading);font-size:clamp(24px,3vw,36px);letter-spacing:0.02em;color:var(--chalk);margin-top:8px;">Standalone Add-ons</h2>
+    </div>
+
+    <div class="addons-grid">
+
+      <div class="addon-card">
+        <div class="addon-icon">🎓</div>
+        <h4>Green Manager Programme</h4>
+        <p>Dedicated training track for your appointed Green Manager or sustainability committee lead.</p>
+      </div>
+
+      <div class="addon-card">
+        <div class="addon-icon">🏆</div>
+        <h4>Awards & Certification Prep</h4>
+        <p>We prepare your application for sustainability awards and green certifications from scratch.</p>
+      </div>
+
+      <div class="addon-card">
+        <div class="addon-icon">📊</div>
+        <h4>ESG Data & Dashboard Setup</h4>
+        <p>Build a lightweight ESG data collection and tracking dashboard your team can run independently.</p>
+      </div>
+
+      <div class="addon-card">
+        <div class="addon-icon">💼</div>
+        <h4>Grant Application Support</h4>
+        <p>Navigate Enterprise Singapore, BCA, and NEA green grants — we help you identify and apply.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+
+    <div class="process-header">
+      <span class="section-label">Getting Started</span>
+      <div class="gold-rule" style="margin: 0 auto 16px;"></div>
+      <h2>How We Work Together</h2>
+      <p>From first conversation to ongoing impact — here's what to expect.</p>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <h4>Free Consultation</h4>
+        <p>30-minute call to understand your business, industry, and where you are on the ESG journey.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <h4>Scoping & Proposal</h4>
+        <p>We map the right engagement — pillar by pillar — and present a clear scope and timeline.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <h4>Kickoff & Discovery</h4>
+        <p>We go deep into your operations, stakeholders, and data to build the foundation for your strategy.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <h4>Implement & Iterate</h4>
+        <p>Regular check-ins, quarterly reviews, and ongoing advisory — sustainability as a living practice.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+
+      <div class="faq-left">
+        <span class="section-label">FAQ</span>
+        <div class="sage-rule"></div>
+        <h2>Common Questions</h2>
+        <p>
+          Still figuring out if ESG consulting is right for your business right now?
+          These are the questions we hear most often.
+        </p>
+        <a href="index.html#contact" class="btn btn-sage" style="margin-top:8px;">Ask Us Directly →</a>
+      </div>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            We're a small SME — is ESG consulting even relevant for us?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Yes — and increasingly so. Singapore's regulatory environment is tightening:
+            SGX-listed companies already have mandatory sustainability reporting, and supply chain
+            ESG requirements are flowing down to SME suppliers. Beyond compliance, ESG unlocks
+            green grants, strengthens tender responses, and differentiates you with customers
+            who are increasingly asking about sustainability credentials. Our Start tier is
+            specifically designed for SMEs at the very beginning of this journey.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            Do you offer one-off projects or only retainers?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Both. We typically recommend retainer engagements for ongoing support — ESG is a
+            continuous process, not a one-time report. But we also support companies on a
+            project basis for specific initiatives: a materiality assessment, a standalone
+            sustainability report, a grant application, or a Green Manager training programme.
+            We'll recommend what genuinely fits your needs.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            What reporting frameworks do you work with?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            We work with GRI (Global Reporting Initiative), TCFD (Task Force on Climate-related
+            Financial Disclosures), ISSB standards, SGX sustainability reporting guidelines, and
+            MAS requirements. We tailor the framework mix to your company type, listing status,
+            industry, and the stakeholders you need to report to.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            How long does a typical ESG engagement take?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            The Start package can be completed in 4–8 weeks. Shape typically runs 3–6 months
+            depending on scope and your team's availability. Sustain is designed as an ongoing
+            annual engagement with quarterly touchpoints. We build the timeline around your
+            business calendar, not the other way around.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            Can you help us access green grants?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Yes. We're familiar with Enterprise Singapore's sustainability-related support
+            schemes, BCA Green Mark pathways, and NEA programmes. As part of our Sustain
+            engagement — and as a standalone add-on — we help you identify the right grants,
+            prepare the documentation, and position your ESG work to maximise your chances
+            of approval.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            What makes Zenith Blueprint different from a pure sustainability firm?
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            We combine ESG expertise with a business-first mindset. We understand SME
+            constraints — budget, headcount, competing priorities — and we connect ESG
+            directly to your sales positioning, stakeholder communications, and grant strategy.
+            We also bring AI-powered efficiency tools to the data collection and reporting
+            process, which reduces your team's workload significantly.
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════ -->
+<section id="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <h2>Ready to make sustainability your advantage?</h2>
+      <p>
+        Start with a free 30-minute consultation. We'll be honest about what fits
+        your stage and budget — no hard sell.
+      </p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn btn-sage">Book Free Consultation</a>
+        <a href="#pricing" class="btn btn-outline">Review Packages Again</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:14px;">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 33 L20 9 L34 33" fill="none" stroke="#4FB99F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="5" r="3" fill="#4FB99F"/>
+          </svg>
+          <div class="logo-text">
+            <span class="l1">ZENITH</span>
+            <span class="l2">BLUEPRINT</span>
+          </div>
+        </div>
+        <div class="footer-tagline">GROW. SUSTAIN. SCALE.</div>
+        <p>Singapore SME advisory — Sales &amp; Marketing, ESG transformation, and AI-powered productivity.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>ESG Services</h4>
+        <ul>
+          <li><a href="#journey">Our Approach</a></li>
+          <li><a href="#pricing">Start Package</a></li>
+          <li><a href="#pricing">Shape Package</a></li>
+          <li><a href="#pricing">Sustain Package</a></li>
+          <li><a href="#addons">Add-ons</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Zenith Blueprint</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">All Services</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#ai-course">AI Courses</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Zenith Blueprint. All rights reserved.</p>
+      <p class="uen">UEN: XXXXXXXX</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.querySelector('.nav-burger');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
+
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%20found%20your%20website%20and%20would%20like%20to%20find%20out%20more" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 2.67c-7.35 0-13.33 5.98-13.33 13.33 0 2.35.62 4.65 1.79 6.68L2.67 29.33l6.81-1.79a13.27 13.27 0 0 0 6.56 1.73h.01c7.35 0 13.33-5.98 13.33-13.33S23.39 2.67 16.04 2.67zm0 24.36h-.01a11.05 11.05 0 0 1-5.63-1.54l-.4-.24-4.04 1.06 1.08-3.94-.26-.4a11.02 11.02 0 0 1-1.69-5.88c0-6.11 4.97-11.08 11.09-11.08 2.96 0 5.74 1.15 7.83 3.25a11.02 11.02 0 0 1 3.24 7.84c0 6.11-4.97 11.08-11.08 11.08zm6.08-8.3c-.33-.17-1.97-.97-2.28-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.3-.19.22-.39.25-.72.08-.33-.17-1.41-.52-2.68-1.66-.99-.88-1.66-1.97-1.85-2.31-.19-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.17-.19.22-.33.33-.56.11-.22.06-.42-.03-.58-.08-.17-.75-1.8-1.02-2.47-.27-.65-.55-.56-.75-.57h-.64c-.22 0-.58.08-.89.42-.3.33-1.16 1.13-1.16 2.77 0 1.63 1.19 3.21 1.36 3.43.17.22 2.35 3.58 5.69 5.02.8.34 1.42.55 1.9.7.8.26 1.53.22 2.1.13.64-.1 1.97-.81 2.25-1.59.28-.78.28-1.44.19-1.58-.08-.14-.3-.22-.63-.39z"/></svg>
+</a>
+
+</body>
+</html>

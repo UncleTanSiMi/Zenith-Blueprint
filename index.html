@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Blueprint — Singapore SME Advisory | Sales, ESG & AI</title>
+  <meta name="description" content="Singapore SME advisory firm specialising in Sales & Marketing strategy, ESG transformation, and AI-powered productivity. Book a free consultation." />
+
+  <!-- ═══ ANALYTICS — OUTSTANDING: replace placeholder IDs ═══
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX');
+    fbq('track', 'PageView');
+  </script>
+  ═══ END ANALYTICS PLACEHOLDER ═══ -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet" />
+
+  <!-- Favicon: peak mark -->
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M6 33 L20 9 L34 33" fill="none" stroke="%230E7C66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="5" r="3" fill="%230E7C66"/></svg>' />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       DESIGN TOKENS — "Clean & Light"
+    ───────────────────────────────────────────── */
+    :root {
+      --paper:        #FAF9F6;   /* page background */
+      --white:        #FFFFFF;   /* cards */
+      --ink:          #11293E;   /* deep navy — headings */
+      --ink-soft:     #46586A;   /* body text */
+      --ink-faint:    #7A8896;   /* muted text */
+      --emerald:      #0E7C66;   /* primary accent */
+      --emerald-dark: #0A5F4F;
+      --emerald-tint: #E9F3EF;   /* light accent backgrounds */
+      --navy-band:    #11293E;   /* dark contrast bands */
+      --line:         #E7E4DC;   /* hairline borders */
+      --whatsapp:     #25D366;
+
+      --font-heading: 'Sora', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --nav-h: 70px;
+      --section-pad: 96px;
+      --radius: 8px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(17,41,62,0.07);
+      --shadow-md: 0 8px 30px rgba(17,41,62,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--emerald);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .section-h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(28px, 3.6vw, 42px);
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub { font-size: 16px; color: var(--ink-faint); max-width: 580px; line-height: 1.7; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header .section-sub { margin: 0 auto; }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 30px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      line-height: 1.3;
+    }
+    .btn-primary { background: var(--emerald); color: #fff; box-shadow: 0 2px 10px rgba(14,124,102,0.25); }
+    .btn-primary:hover { background: var(--emerald-dark); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--emerald); border: 1.5px solid var(--emerald); }
+    .btn-outline:hover { background: var(--emerald-tint); }
+    .btn-navy { background: var(--ink); color: #fff; }
+    .btn-navy:hover { background: #1B3A55; transform: translateY(-2px); }
+
+    /* ─────────────────────────────────────────────
+       LOGO
+    ───────────────────────────────────────────── */
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .logo-text .l1 { font-family: var(--font-heading); font-weight: 800; font-size: 18px; letter-spacing: 0.06em; color: var(--ink); }
+    .logo-text .l2 { font-family: var(--font-heading); font-weight: 600; font-size: 9.5px; letter-spacing: 0.42em; color: var(--emerald); }
+
+    /* ─────────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-family: var(--font-heading); font-weight: 600; font-size: 14px; color: var(--ink-soft); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--emerald); }
+    .nav-cta { margin-left: 8px; padding: 10px 22px; font-size: 14px; }
+
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-burger span { display: block; width: 24px; height: 2.5px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: 0.25s; }
+
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+      background: var(--white); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md);
+      padding: 12px 24px 24px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 13px 4px; font-family: var(--font-heading); font-weight: 600; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--line); }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--emerald); }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    #hero {
+      padding: calc(var(--nav-h) + 70px) 0 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 800px 500px at 85% 10%, rgba(14,124,102,0.07) 0%, transparent 60%),
+        var(--paper);
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(17,41,62,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,41,62,0.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 75%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 75%);
+    }
+
+    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--emerald-tint); color: var(--emerald);
+      font-family: var(--font-heading); font-weight: 600; font-size: 12.5px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 30px; margin-bottom: 26px;
+    }
+    .hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); }
+
+    .hero-h1 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 22px;
+    }
+    .hero-h1 em { font-style: normal; color: var(--emerald); }
+
+    .hero-sub { font-size: 18px; color: var(--ink-soft); line-height: 1.7; max-width: 480px; margin-bottom: 30px; }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+    .tag {
+      font-family: var(--font-heading); font-weight: 600; font-size: 13px;
+      padding: 8px 16px; border-radius: 30px;
+      background: var(--white); border: 1px solid var(--line); color: var(--ink-soft);
+      transition: all 0.2s; box-shadow: var(--shadow-sm);
+    }
+    .tag:hover { border-color: var(--emerald); color: var(--emerald); transform: translateY(-2px); }
+
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .hero-note { font-size: 13.5px; color: var(--ink-faint); margin-top: 16px; }
+    .hero-note strong { color: var(--emerald); font-weight: 600; }
+
+    .hero-visual { display: flex; align-items: center; justify-content: center; }
+    .hero-visual svg { width: 100%; max-width: 420px; height: auto; }
+
+    /* ─────────────────────────────────────────────
+       STATS BAR
+    ───────────────────────────────────────────── */
+    .stats-bar { background: var(--navy-band); padding: 36px 0; }
+    .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-number { font-family: var(--font-heading); font-weight: 700; font-size: 36px; color: #fff; line-height: 1; }
+    .stat-number span { color: #4FB99F; }
+    .stat-label { font-size: 13.5px; color: #9FB0C0; margin-top: 6px; }
+
+    /* ─────────────────────────────────────────────
+       SERVICES
+    ───────────────────────────────────────────── */
+    #services { padding: var(--section-pad) 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(14,124,102,0.35); }
+
+    .service-icon {
+      width: 50px; height: 50px; border-radius: 12px;
+      background: var(--emerald-tint);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 23px;
+    }
+    .service-num { position: absolute; top: 26px; right: 30px; font-family: var(--font-heading); font-weight: 800; font-size: 40px; color: rgba(17,41,62,0.05); }
+    .service-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 20px; color: var(--ink); margin-bottom: 6px; }
+    .service-card .accent { font-size: 13.5px; font-weight: 600; color: var(--emerald); margin-bottom: 14px; display: block; }
+    .service-card p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 18px; }
+
+    .service-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 20px; background: var(--paper); border: 1px solid var(--line); color: var(--ink-soft); }
+    .card-link { display: inline-block; margin-top: 18px; font-family: var(--font-heading); font-weight: 600; font-size: 14px; color: var(--emerald); }
+    .card-link:hover { text-decoration: underline; }
+
+    /* ─────────────────────────────────────────────
+       ABOUT + FOUNDER
+    ───────────────────────────────────────────── */
+    #about { padding: var(--section-pad) 0; background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .about-text p { font-size: 15.5px; line-height: 1.8; margin-bottom: 16px; }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+
+    .about-pillars { display: flex; flex-direction: column; gap: 22px; }
+    .pillar { display: flex; gap: 16px; align-items: flex-start; }
+    .pillar-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--emerald-tint); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 19px; }
+    .pillar-text h4 { font-family: var(--font-heading); font-weight: 700; font-size: 15.5px; color: var(--ink); margin-bottom: 3px; }
+    .pillar-text p { font-size: 14px; line-height: 1.65; }
+
+    /* Founder */
+    #founder { padding: var(--section-pad) 0; }
+    .founder-inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
+    .founder-photo {
+      aspect-ratio: 4/5; border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, var(--emerald-tint), #DCE9E3);
+      border: 1px solid var(--line);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      color: var(--emerald); font-family: var(--font-heading);
+    }
+    .founder-photo .initials { font-size: 72px; font-weight: 800; opacity: 0.45; }
+    .founder-photo .ph-note { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--ink-faint); }
+    .founder-text h2 { margin-bottom: 6px; }
+    .founder-role { font-family: var(--font-heading); font-weight: 600; font-size: 15px; color: var(--emerald); display: block; margin-bottom: 20px; }
+    .founder-text p { font-size: 15.5px; line-height: 1.8; margin-bottom: 14px; }
+    .ph { background: #FFF7E0; border: 1px dashed #D9B44A; border-radius: 4px; padding: 1px 6px; font-size: 0.92em; color: #8a6d1d; }
+
+    /* ─────────────────────────────────────────────
+       COURSE SPOTLIGHT
+    ───────────────────────────────────────────── */
+    #ai-course { padding: var(--section-pad) 0; background: var(--navy-band); position: relative; overflow: hidden; }
+    #ai-course::before {
+      content: '';
+      position: absolute; top: -150px; right: -150px; width: 560px; height: 560px;
+      background: radial-gradient(circle, rgba(14,124,102,0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #ai-course .section-label { color: #4FB99F; }
+    .course-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; position: relative; z-index: 1; }
+
+    .course-banner {
+      display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: rgba(14,124,102,0.18); border: 1px solid rgba(79,185,159,0.4);
+      border-radius: 30px; padding: 8px 18px; margin-bottom: 22px;
+    }
+    .course-banner .b1 { font-family: var(--font-heading); font-weight: 700; font-size: 12.5px; letter-spacing: 0.1em; color: #4FB99F; }
+    .course-banner .b2 { font-size: 13px; color: #C9D6E0; }
+
+    .course-h2 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(30px, 3.8vw, 46px); line-height: 1.12; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px; }
+    .course-tagline { font-size: 17px; color: #4FB99F; font-weight: 600; margin-bottom: 18px; display: block; }
+    .course-desc { font-size: 15.5px; color: #B9C6D2; line-height: 1.75; margin-bottom: 26px; }
+
+    .course-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 26px; }
+    .course-stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius); padding: 18px 14px; text-align: center; }
+    .course-stat .n { font-family: var(--font-heading); font-weight: 700; font-size: 28px; color: #4FB99F; line-height: 1; }
+    .course-stat .t { font-size: 11.5px; color: #9FB0C0; margin-top: 6px; line-height: 1.45; }
+
+    .course-who { display: flex; flex-direction: column; gap: 9px; margin-bottom: 30px; }
+    .course-who-item { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: #C9D6E0; }
+    .course-who-item::before {
+      content: '✓'; width: 20px; height: 20px; flex-shrink: 0;
+      background: rgba(79,185,159,0.18); color: #4FB99F; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 11px;
+    }
+
+    .course-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 34px; box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+    .course-card-title { font-family: var(--font-heading); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--emerald); margin-bottom: 6px; }
+    .course-card-name { font-family: var(--font-heading); font-weight: 700; font-size: 23px; color: var(--ink); line-height: 1.25; margin-bottom: 18px; }
+
+    .course-next {
+      background: var(--emerald-tint); border-radius: var(--radius);
+      padding: 12px 16px; margin-bottom: 18px;
+      font-size: 13.5px; color: var(--ink); text-align: center;
+    }
+    .course-next strong { color: var(--emerald); }
+
+    .course-modules { list-style: none; margin-bottom: 22px; }
+    .course-modules li { font-size: 14px; color: var(--ink-soft); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+    .course-modules li::before { content: '▸'; color: var(--emerald); font-size: 11px; }
+
+    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .price-box { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; text-align: center; }
+    .price-box.hot { border-color: var(--emerald); background: var(--emerald-tint); }
+    .price-box .pb-label { font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 4px; }
+    .price-box .pb-old { font-size: 12px; color: var(--ink-faint); text-decoration: line-through; }
+    .price-box .pb-now { font-family: var(--font-heading); font-weight: 800; font-size: 24px; color: var(--emerald); line-height: 1.15; }
+    .price-box .pb-unit { font-size: 11px; color: var(--ink-faint); }
+
+    /* ─────────────────────────────────────────────
+       TESTIMONIALS
+    ───────────────────────────────────────────── */
+    #testimonials { padding: var(--section-pad) 0; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .testi-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: 30px; box-shadow: var(--shadow-sm); transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .testi-stars { color: #E8A33D; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .testi-quote { font-size: 15px; color: var(--ink); line-height: 1.7; margin-bottom: 22px; }
+    .testi-author { display: flex; align-items: center; gap: 13px; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--emerald);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-family: var(--font-heading); font-weight: 700; font-size: 14px; color: var(--ink); }
+    .testi-role { font-size: 12.5px; color: var(--ink-faint); }
+
+    /* ─────────────────────────────────────────────
+       LEAD MAGNET
+    ───────────────────────────────────────────── */
+    #playbook { padding: 0 0 var(--section-pad); }
+    .magnet-box {
+      background: linear-gradient(135deg, var(--emerald) 0%, #0A6553 100%);
+      border-radius: var(--radius-lg);
+      padding: 52px 48px;
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; align-items: center;
+      box-shadow: var(--shadow-md);
+    }
+    .magnet-box h2 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(24px, 3vw, 34px); color: #fff; line-height: 1.2; margin-bottom: 12px; }
+    .magnet-box p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+    .magnet-list { margin: 16px 0 0; list-style: none; }
+    .magnet-list li { font-size: 14px; color: rgba(255,255,255,0.9); padding: 4px 0; display: flex; gap: 9px; align-items: center; }
+    .magnet-list li::before { content: '✓'; font-weight: 700; color: #BDE6D8; }
+
+    .magnet-form { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--radius); padding: 26px; }
+    .magnet-form label { font-family: var(--font-heading); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.85); display: block; margin-bottom: 8px; }
+    .magnet-form input {
+      width: 100%; padding: 13px 14px; border-radius: var(--radius); border: none;
+      font-family: var(--font-body); font-size: 14.5px; color: var(--ink); margin-bottom: 12px; outline: none;
+    }
+    .magnet-form .btn { width: 100%; background: var(--ink); color: #fff; }
+    .magnet-form .btn:hover { background: #1B3A55; }
+    .magnet-note { font-size: 11.5px; color: rgba(255,255,255,0.65); margin-top: 10px; text-align: center; }
+
+    /* ─────────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────────── */
+    #faq { padding: var(--section-pad) 0; background: var(--white); border-top: 1px solid var(--line); }
+    .faq-inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question {
+      list-style: none; cursor: pointer; padding: 20px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      font-family: var(--font-heading); font-weight: 600; font-size: 16px; color: var(--ink);
+    }
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-icon { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: var(--emerald-tint); color: var(--emerald); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: transform 0.25s; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+    .faq-answer { padding: 0 40px 20px 0; font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); }
+
+    /* ─────────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────────── */
+    #contact { padding: var(--section-pad) 0; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+    .contact-info p { font-size: 15px; line-height: 1.75; margin-bottom: 28px; }
+    .contact-details { display: flex; flex-direction: column; gap: 13px; }
+    .contact-row { display: flex; align-items: center; gap: 12px; font-size: 14.5px; color: var(--ink-soft); }
+    .contact-row .ico { width: 36px; height: 36px; border-radius: 9px; background: var(--emerald-tint); color: var(--emerald); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+    .contact-row a:hover { color: var(--emerald); }
+
+    .contact-form { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+    .form-title { font-family: var(--font-heading); font-weight: 700; font-size: 19px; color: var(--ink); margin-bottom: 6px; }
+    .form-sub { font-size: 13.5px; color: var(--ink-faint); margin-bottom: 24px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    label { font-family: var(--font-heading); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); text-transform: uppercase; }
+    input, select, textarea {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 13px 14px; font-family: var(--font-body); font-size: 14.5px; color: var(--ink);
+      width: 100%; transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--emerald); box-shadow: 0 0 0 3px rgba(14,124,102,0.12); }
+    input::placeholder, textarea::placeholder { color: #A9B4BE; }
+    select { cursor: pointer; }
+    textarea { resize: vertical; min-height: 96px; }
+    .form-submit .btn { width: 100%; font-size: 15.5px; padding: 15px; }
+    .form-privacy { font-size: 12px; color: var(--ink-faint); text-align: center; margin-top: 12px; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    footer { background: var(--navy-band); padding: 56px 0 32px; }
+    .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand .logo-text .l1 { color: #fff; }
+    .footer-brand .logo-text .l2 { color: #4FB99F; }
+    .footer-tagline { font-family: var(--font-heading); font-weight: 700; font-size: 13px; letter-spacing: 0.16em; color: #4FB99F; margin: 14px 0 10px; }
+    .footer-brand p { font-size: 13.5px; color: #9FB0C0; line-height: 1.7; }
+    .footer-col h4 { font-family: var(--font-heading); font-weight: 700; font-size: 12.5px; letter-spacing: 0.14em; color: #fff; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 13.5px; color: #9FB0C0; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p, .uen { font-size: 12.5px; color: #7A8B9B; }
+
+    /* ─────────────────────────────────────────────
+       FLOATING WHATSAPP
+    ───────────────────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--whatsapp);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-tooltip {
+      position: fixed; bottom: 38px; right: 94px; z-index: 200;
+      background: var(--ink); color: #fff; font-size: 13px; font-weight: 500;
+      padding: 8px 14px; border-radius: 8px; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .wa-float:hover + .wa-tooltip, .wa-tooltip.show { opacity: 1; }
+
+    /* ─────────────────────────────────────────────
+       EXIT-INTENT POPUP
+    ───────────────────────────────────────────── */
+    .exit-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(17,41,62,0.6); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; padding: 24px;
+    }
+    .exit-overlay.show { display: flex; }
+    .exit-modal {
+      background: var(--white); border-radius: var(--radius-lg); max-width: 460px; width: 100%;
+      padding: 40px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      animation: popIn 0.3s cubic-bezier(.22,1,.36,1);
+    }
+    @keyframes popIn { from { transform: scale(0.92) translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .exit-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; color: var(--ink-faint); cursor: pointer; line-height: 1; }
+    .exit-modal h3 { font-family: var(--font-heading); font-weight: 800; font-size: 23px; color: var(--ink); line-height: 1.25; margin-bottom: 10px; }
+    .exit-modal p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 18px; }
+    .exit-modal input { margin-bottom: 12px; background: var(--paper); }
+    .exit-modal .btn { width: 100%; }
+
+    /* ─────────────────────────────────────────────
+       REVEAL ANIMATION
+    ───────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1); }
+    .reveal.revealed { opacity: 1; transform: none; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      :root { --section-pad: 64px; }
+      .hero-inner, .about-inner, .course-inner, .contact-inner, .founder-inner, .faq-inner, .magnet-box { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .magnet-box { padding: 36px 28px; }
+      .founder-photo { max-width: 320px; }
+    }
+    @media (max-width: 560px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { text-align: center; }
+      .course-stats-row { grid-template-columns: 1fr; }
+      .price-grid { grid-template-columns: 1fr; }
+      .contact-form { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="logo" aria-label="Zenith Blueprint Home">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 33 L20 9 L34 33" fill="none" stroke="#0E7C66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="5" r="3" fill="#0E7C66"/>
+      </svg>
+      <div class="logo-text">
+        <span class="l1">ZENITH</span>
+        <span class="l2">BLUEPRINT</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="esg.html">ESG</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#ai-course">AI Courses</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="btn btn-primary nav-cta">Free Consultation</a>
+    <button class="nav-burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="esg.html">ESG</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#ai-course" onclick="closeMenu()">AI Courses</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="blog.html">Blog</a>
+  <a href="#contact" onclick="closeMenu()">Get a Free Consultation →</a>
+</div>
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <span class="hero-eyebrow">Singapore SME Advisory</span>
+
+        <h1 class="hero-h1">
+          Your highest point starts with the <em>right blueprint.</em>
+        </h1>
+
+        <p class="hero-sub">
+          We help Singapore SMEs grow revenue, pivot to sustainability,
+          and harness AI — without the corporate overhead.
+        </p>
+
+        <div class="hero-tags">
+          <a href="#services" class="tag">📈 Sales &amp; Marketing</a>
+          <a href="esg.html" class="tag">🌿 ESG Transformation</a>
+          <a href="#ai-course" class="tag">🤖 AI &amp; Automation</a>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book a Free Consultation</a>
+          <a href="#ai-course" class="btn btn-outline">Explore AI Courses</a>
+        </div>
+        <p class="hero-note"><strong>✓ No obligation</strong> · 30-minute call · We'll tell you honestly what fits</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- blueprint grid -->
+          <g stroke="#11293E" stroke-opacity="0.07" stroke-width="1">
+            <line x1="0" y1="60" x2="420" y2="60"/><line x1="0" y1="130" x2="420" y2="130"/>
+            <line x1="0" y1="200" x2="420" y2="200"/><line x1="0" y1="270" x2="420" y2="270"/>
+            <line x1="70" y1="0" x2="70" y2="380"/><line x1="160" y1="0" x2="160" y2="380"/>
+            <line x1="250" y1="0" x2="250" y2="380"/><line x1="340" y1="0" x2="340" y2="380"/>
+          </g>
+          <!-- ascending dashed path -->
+          <path d="M30 330 C 110 320, 130 250, 200 230 S 320 130, 385 70" fill="none" stroke="#0E7C66" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.55"/>
+          <!-- large peak mark -->
+          <path d="M120 320 L230 110 L340 320" fill="none" stroke="#11293E" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M178 320 L230 215 L282 320" fill="none" stroke="#0E7C66" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="230" cy="78" r="11" fill="#0E7C66"/>
+          <!-- floating accents -->
+          <circle cx="62" cy="120" r="5" fill="#0E7C66" opacity="0.4"/>
+          <circle cx="375" cy="250" r="6" fill="#11293E" opacity="0.18"/>
+          <rect x="40" y="220" width="34" height="34" rx="8" fill="#0E7C66" opacity="0.12"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar reveal">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-number">10<span>+</span></div><div class="stat-label">Years Industry Experience</div></div>
+      <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Core Advisory Services</div></div>
+      <div class="stat-item"><div class="stat-number">SG</div><div class="stat-label">Singapore-Based &amp; Focused</div></div>
+      <div class="stat-item"><div class="stat-number">SME</div><div class="stat-label">Purpose-Built for SMEs</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-h2">Four Ways We Help You Grow</h2>
+      <p class="section-sub">From one-off project sprints to structured advisory — we slot in where you need us most.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <div class="service-icon">📈</div>
+        <h3>Sales &amp; Marketing Consultancy</h3>
+        <span class="accent">Project-based · No retainer required</span>
+        <p>No full-time marketing department? No problem. We parachute in for defined projects — from product launches to pricing strategy — and deliver results without the overhead of a permanent hire.</p>
+        <div class="service-pills">
+          <span class="pill">Product Launches</span><span class="pill">Market Research</span><span class="pill">Pricing Strategy</span><span class="pill">Social Media Campaigns</span><span class="pill">Exhibition Planning</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <div class="service-icon">🌿</div>
+        <h3>ESG &amp; Sustainability Consulting</h3>
+        <span class="accent">From compliance to competitive advantage</span>
+        <p>Sustainability is no longer optional for Singapore businesses — but it doesn't have to feel overwhelming. We guide you from baseline to action: building ESG literacy, formalising strategy, and turning reporting into a genuine business advantage.</p>
+        <div class="service-pills">
+          <span class="pill">Materiality Assessment</span><span class="pill">ESG Strategy &amp; Roadmap</span><span class="pill">GRI / TCFD Alignment</span><span class="pill">Grant-Linked ESG</span><span class="pill">Training &amp; Workshops</span>
+        </div>
+        <a href="esg.html" class="card-link">View packages &amp; approach →</a>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <div class="service-icon">🎓</div>
+        <h3>Corporate Training</h3>
+        <span class="accent">Upskill your team · ESG &amp; AI tracks</span>
+        <p>We train the people responsible for carrying your strategy forward. ESG programmes equip your Green Manager or sustainability committee to act independently. AI training gives your sales and marketing teams the tools to work smarter and faster.</p>
+        <div class="service-pills">
+          <span class="pill">ESG Framework Training</span><span class="pill">Green Manager Programme</span><span class="pill">AI for Sales Teams</span><span class="pill">AI for Marketing</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-num">04</span>
+        <div class="service-icon">🤖</div>
+        <h3>AI Skills Courses</h3>
+        <span class="accent">Open enrolment · Individual &amp; group</span>
+        <p>Practical AI courses designed for professionals who want results, not theory. Whether you're a business owner looking to stand out with AI-generated video, or a marketer scaling content output — walk away with skills you can use immediately.</p>
+        <div class="service-pills">
+          <span class="pill">AI Video Generation Masterclass</span><span class="pill">AI for Small Business</span><span class="pill">Content Creation with AI</span>
+        </div>
+        <a href="ai-property-masterclass.html" class="card-link">See the featured course →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+
+      <div class="about-text reveal">
+        <span class="section-label">Why Zenith Blueprint</span>
+        <h2 class="section-h2">Senior expertise.<br>SME pragmatism.</h2>
+        <p>Large consultancies bring big teams and bigger invoices. Freelancers bring narrow skills. <strong>Zenith Blueprint sits squarely in between</strong> — senior advisory experience, structured around what SMEs actually need: clear scope, fast delivery, and measurable outcomes.</p>
+        <p>Based in Singapore, we understand the local regulatory landscape, the cultural nuances of B2B selling here, and the very real pressures SMEs face when trying to grow sustainably without a deep corporate bench.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Let's Talk About Your Business</a>
+      </div>
+
+      <div class="about-pillars">
+        <div class="pillar reveal"><div class="pillar-icon">🎯</div><div class="pillar-text"><h4>Project-Based Flexibility</h4><p>Engage us for a specific project — no long retainers, no unnecessary overhead. Pay for what you need.</p></div></div>
+        <div class="pillar reveal"><div class="pillar-icon">🌍</div><div class="pillar-text"><h4>ESG That Actually Gets Implemented</h4><p>We don't just produce reports. We train your team and hand over a plan your people can execute.</p></div></div>
+        <div class="pillar reveal"><div class="pillar-icon">⚡</div><div class="pillar-text"><h4>AI That Creates Real Value</h4><p>Practical AI training rooted in your industry — not generic prompting workshops, but applied skills for your context.</p></div></div>
+        <div class="pillar reveal"><div class="pillar-icon">🇸🇬</div><div class="pillar-text"><h4>Singapore-Focused</h4><p>Deep understanding of the local SME environment, grant landscape, and regulatory requirements.</p></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOUNDER ═══ -->
+<section id="founder">
+  <div class="container">
+    <div class="founder-inner">
+
+      <div class="founder-photo reveal">
+        <!-- OUTSTANDING: replace this block with <img src="founder-francis.jpg" alt="Francis Tan, Founder of Zenith Blueprint"> -->
+        <span class="initials">FT</span>
+        <span class="ph-note">[ ADD FOUNDER PHOTO ]</span>
+      </div>
+
+      <div class="founder-text reveal">
+        <span class="section-label">The Person Behind The Blueprint</span>
+        <h2 class="section-h2">Meet Francis</h2>
+        <span class="founder-role">Founder &amp; Principal Consultant <span class="ph">[CONFIRM TITLE]</span></span>
+        <p>When you work with Zenith Blueprint, you work directly with me — not a junior team handed your account after the pitch.</p>
+        <p><span class="ph">[ADD BIO — 2–3 sentences: your career background, industries served, and one credible specific, e.g. "15 years leading regional sales teams in manufacturing and F&amp;B, including X and Y."]</span></p>
+        <p><span class="ph">[ADD CREDENTIALS — certifications, notable projects, associations, e.g. GRI certified, ACTA/ACLP, PMC-registered, etc.]</span></p>
+        <a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%27d%20like%20to%20chat%20about%20my%20business" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:8px;">Chat with me on WhatsApp</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ AI COURSE SPOTLIGHT ═══ -->
+<section id="ai-course">
+  <div class="container">
+    <div class="course-inner">
+
+      <div class="reveal">
+        <div class="course-banner">
+          <span class="b1">🎯 EARLY BIRD — 15% OFF</span>
+          <span class="b2">First 4 cohort runs only · Limited seats per run</span>
+        </div>
+
+        <span class="section-label">Featured Course · For Creators &amp; Business Owners</span>
+        <h2 class="course-h2">AI Video Generation Masterclass</h2>
+        <span class="course-tagline">Stop outsourcing your marketing. Own the whole production pipeline — in a single day.</span>
+        <p class="course-desc">
+          Video is the difference between a brand that gets attention and one that gets scrolled past.
+          This hands-on masterclass gives you the complete AI production pipeline — from concept and
+          storyboard to final edit — so you walk away with a real AI-generated video ready to post.
+        </p>
+
+        <div class="course-stats-row">
+          <div class="course-stat"><div class="n">73%</div><div class="t">of buyers say video influenced their enquiry</div></div>
+          <div class="course-stat"><div class="n">4×</div><div class="t">more enquiries vs static photo listings</div></div>
+          <div class="course-stat"><div class="n">1 Day</div><div class="t">from zero to your first AI-generated video</div></div>
+        </div>
+
+        <div class="course-who">
+          <div class="course-who-item">Business owners wanting to produce their own brand videos</div>
+          <div class="course-who-item">Marketers and content creators scaling video output</div>
+          <div class="course-who-item">No prior video or editing experience needed</div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="ai-property-masterclass.html" class="btn btn-primary">View Full Course Details →</a>
+          <a href="samples.html" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.25);">Watch Sample Videos</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-title">5-MODULE CURRICULUM</div>
+        <div class="course-card-name">AI Video Generation Masterclass</div>
+
+        <div class="course-next">📅 Next cohort: <strong>[ADD DATE — e.g. Sat 12 Jul 2026]</strong> · <strong>[X]</strong> seats left</div>
+
+        <ul class="course-modules">
+          <li>AI Prompting for Video Marketing</li>
+          <li>Creative Direction &amp; Storyboarding with AI</li>
+          <li>AI Image Generation for Listings</li>
+          <li>Video Generation with Google Flow &amp; Veo</li>
+          <li>CapCut Editing &amp; Final Assembly <span style="font-size:11px;color:var(--emerald);font-weight:600;margin-left:4px;">Full Day only</span></li>
+        </ul>
+
+        <div class="price-grid">
+          <div class="price-box hot">
+            <div class="pb-label">F2F · FULL DAY</div>
+            <div class="pb-old">S$380</div>
+            <div class="pb-now">S$320</div>
+            <div class="pb-unit">/ pax</div>
+          </div>
+          <div class="price-box">
+            <div class="pb-label">ONLINE · FULL DAY</div>
+            <div class="pb-old">S$220</div>
+            <div class="pb-now">S$190</div>
+            <div class="pb-unit">/ pax</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--ink-faint);text-align:center;margin-bottom:18px;">Half Day options also available · See full pricing →</div>
+
+        <a href="ai-property-masterclass.html" class="btn btn-primary" style="width:100%;display:block;text-align:center;">Reserve Your Seat</a>
+        <a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%27m%20interested%20in%20the%20AI%20Video%20Generation%20Masterclass" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;display:block;text-align:center;margin-top:10px;">WhatsApp Enquiry</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Client Reviews</span>
+      <h2 class="section-h2">What Our Clients Say</h2>
+      <p class="section-sub">Real feedback from SME owners, managers, and course participants.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Zenith Blueprint helped us structure our product launch campaign from scratch. The clarity they brought to our messaging was exactly what we needed to break into a new segment."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LW</div>
+          <div><div class="testi-name">L. Wong <span class="ph" style="font-size:10px;">[ADD FULL NAME + PHOTO]</span></div><div class="testi-role">Managing Director, Consumer Products SME</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The ESG baseline assessment was eye-opening. We had no idea where to start — now we have a roadmap our team can actually follow. The training handover was seamless."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#11293E;">KT</div>
+          <div><div class="testi-name">K. Tan <span class="ph" style="font-size:10px;">[ADD FULL NAME + PHOTO]</span></div><div class="testi-role">Operations Manager, F&amp;B Group</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The AI Video Generation Masterclass was practical, fast-paced, and immediately applicable. I used the tools on my next listing the very next day. My views tripled."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#E8A33D;">RS</div>
+          <div><div class="testi-name">R. Sng <span class="ph" style="font-size:10px;">[ADD FULL NAME + PHOTO]</span></div><div class="testi-role">Senior Property Agent, ERA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ LEAD MAGNET ═══ -->
+<section id="playbook">
+  <div class="container">
+    <div class="magnet-box reveal">
+      <div>
+        <h2>Free Download: The Singapore SME Playbook</h2>
+        <p>Grants, ESG quick wins &amp; AI tools you can act on this quarter — written for busy SME owners, not consultants.</p>
+        <ul class="magnet-list">
+          <li>Which Enterprise SG &amp; sector grants you may qualify for</li>
+          <li>A 5-step ESG starting checklist (no jargon)</li>
+          <li>7 AI tools that pay for themselves in week one</li>
+        </ul>
+      </div>
+      <div class="magnet-form">
+        <form name="lead-magnet" method="POST" data-netlify="true" onsubmit="handleMagnet(event)">
+          <input type="hidden" name="form-name" value="lead-magnet" />
+          <label for="magnet-email">Where should we send it?</label>
+          <input type="email" id="magnet-email" name="email" placeholder="you@company.com" required />
+          <button type="submit" class="btn">Send Me the Playbook →</button>
+          <p class="magnet-note">No spam. One useful email, then occasional insights. Unsubscribe anytime.</p>
+        </form>
+        <p id="magnet-success" style="display:none;color:#fff;font-weight:600;text-align:center;font-size:15px;">✓ Thanks! Check your inbox shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="reveal">
+        <span class="section-label">Common Questions</span>
+        <h2 class="section-h2">Before You Enquire</h2>
+        <p class="section-sub">The questions SME owners ask us most. Don't see yours? WhatsApp us — we reply fast.</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary class="faq-question">How do your fees work — retainer or project?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">Most engagements are project-based with a fixed scope and fee agreed upfront — no surprise invoices. Ongoing advisory retainers are available if you want continuity, but they're never required.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">We're new to ESG. Is it too early to engage you?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">No — early is the best time. A baseline assessment tells you exactly where you stand and which grants you may qualify for before you spend on anything else. We meet you where you are.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">Are your courses claimable under SkillsFuture or grants?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><span class="ph">[CONFIRM — state SkillsFuture / UTAP / company grant eligibility, or state "not currently claimable" honestly.]</span></div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">What size of company do you typically work with?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">Singapore SMEs — typically 5 to 200 staff. Large enough to need structure, small enough that a big-firm engagement doesn't make financial sense.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">How fast can we start?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">After a free 30-minute discovery call, we send a short proposal within 3 working days. Most projects kick off within two weeks.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="contact-info reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-h2">Let's Build Your Blueprint</h2>
+        <p>Whether you need a marketing sprint, an ESG baseline, corporate AI training, or a seat in our next course — start with a conversation. We'll tell you honestly what fits and what doesn't.</p>
+
+        <div class="contact-details">
+          <div class="contact-row"><span class="ico">✉</span><a href="mailto:connect@zenith-blueprint.com">connect@zenith-blueprint.com</a></div>
+          <div class="contact-row"><span class="ico">📞</span><a href="tel:+6593290742">+65 9329 0742</a></div>
+          <div class="contact-row"><span class="ico">💬</span><a href="https://wa.me/6593290742" target="_blank" rel="noopener">WhatsApp us directly</a></div>
+          <div class="contact-row"><span class="ico">📍</span><span>Singapore</span></div>
+          <div class="contact-row"><span class="ico">🔖</span><span>UEN: <span class="ph">[ADD UEN]</span></span></div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-title">Send an Enquiry</div>
+        <div class="form-sub">Takes 30 seconds. We reply within 1 business day.</div>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none;"><input name="bot-field" /></p>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label for="service">I'm interested in</label>
+            <select id="service" name="service">
+              <option value="">— Select a service —</option>
+              <option>Sales &amp; Marketing Consultancy</option>
+              <option>ESG &amp; Sustainability Consulting</option>
+              <option>Corporate Training (ESG / AI)</option>
+              <option>AI Video Generation Masterclass</option>
+              <option>Not sure yet — just exploring</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us more <span style="text-transform:none;font-weight:400;color:var(--ink-faint);">(optional)</span></label>
+            <textarea id="message" name="message" placeholder="Brief description of what you're looking for…"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+          </div>
+          <p class="form-privacy">We never share your details. No spam, ever.</p>
+        </form>
+        <p id="form-success" style="display:none;text-align:center;margin-top:16px;color:var(--emerald);font-weight:600;font-size:15px;">✓ Thank you — we'll be in touch within 1 business day.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 33 L20 9 L34 33" fill="none" stroke="#4FB99F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="5" r="3" fill="#4FB99F"/>
+          </svg>
+          <div class="logo-text"><span class="l1">ZENITH</span><span class="l2">BLUEPRINT</span></div>
+        </div>
+        <div class="footer-tagline">GROW. SUSTAIN. SCALE.</div>
+        <p>Singapore SME advisory — Sales &amp; Marketing, ESG transformation, and AI-powered productivity.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Sales &amp; Marketing</a></li>
+          <li><a href="esg.html">ESG Consulting</a></li>
+          <li><a href="#services">Corporate Training</a></li>
+          <li><a href="#ai-course">AI Courses</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#founder">Meet Francis</a></li>
+          <li><a href="#testimonials">Client Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:connect@zenith-blueprint.com">connect@zenith-blueprint.com</a></li>
+          <li><a href="tel:+6593290742">+65 9329 0742</a></li>
+          <li><a href="https://wa.me/6593290742" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="#contact">Send an Enquiry</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Zenith Blueprint. All rights reserved.</p>
+      <span class="uen">UEN: [ADD UEN] · zenith-blueprint.com</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%20found%20your%20website%20and%20would%20like%20to%20find%20out%20more" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 2.67c-7.35 0-13.33 5.98-13.33 13.33 0 2.35.62 4.65 1.79 6.68L2.67 29.33l6.81-1.79a13.27 13.27 0 0 0 6.56 1.73h.01c7.35 0 13.33-5.98 13.33-13.33S23.39 2.67 16.04 2.67zm0 24.36h-.01a11.05 11.05 0 0 1-5.63-1.54l-.4-.24-4.04 1.06 1.08-3.94-.26-.4a11.02 11.02 0 0 1-1.69-5.88c0-6.11 4.97-11.08 11.09-11.08 2.96 0 5.74 1.15 7.83 3.25a11.02 11.02 0 0 1 3.24 7.84c0 6.11-4.97 11.08-11.08 11.08zm6.08-8.3c-.33-.17-1.97-.97-2.28-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.3-.19.22-.39.25-.72.08-.33-.17-1.41-.52-2.68-1.66-.99-.88-1.66-1.97-1.85-2.31-.19-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.17-.19.22-.33.33-.56.11-.22.06-.42-.03-.58-.08-.17-.75-1.8-1.02-2.47-.27-.65-.55-.56-.75-.57h-.64c-.22 0-.58.08-.89.42-.3.33-1.16 1.13-1.16 2.77 0 1.63 1.19 3.21 1.36 3.43.17.22 2.35 3.58 5.69 5.02.8.34 1.42.55 1.9.7.8.26 1.53.22 2.1.13.64-.1 1.97-.81 2.25-1.59.28-.78.28-1.44.19-1.58-.08-.14-.3-.22-.63-.39z"/></svg>
+</a>
+<span class="wa-tooltip" id="waTooltip">Questions? Chat with us 👋</span>
+
+
+<!-- ═══ EXIT-INTENT POPUP ═══ -->
+<div class="exit-overlay" id="exitOverlay" role="dialog" aria-modal="true">
+  <div class="exit-modal">
+    <button class="exit-close" onclick="closeExit()" aria-label="Close">×</button>
+    <h3>Before you go — grab the free SME Playbook 📘</h3>
+    <p>Grants, ESG quick wins &amp; AI tools for Singapore SMEs. One email, real value, no spam.</p>
+    <form name="lead-magnet" method="POST" data-netlify="true" onsubmit="handleExitMagnet(event)">
+      <input type="hidden" name="form-name" value="lead-magnet" />
+      <input type="email" name="email" placeholder="you@company.com" required />
+      <button type="submit" class="btn btn-primary">Send Me the Playbook →</button>
+    </form>
+    <p id="exit-success" style="display:none;color:var(--emerald);font-weight:600;text-align:center;margin-top:10px;">✓ Done! Check your inbox shortly.</p>
+  </div>
+</div>
+
+
+<script>
+/* ── Mobile menu ── */
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
+
+/* ── Netlify form helpers ── */
+function postForm(form){
+  const data = new FormData(form);
+  return fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data).toString()
+  });
+}
+function handleSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  postForm(e.target).finally(() => {
+    e.target.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
+}
+function handleMagnet(e){
+  e.preventDefault();
+  postForm(e.target).finally(() => {
+    e.target.style.display = 'none';
+    document.getElementById('magnet-success').style.display = 'block';
+  });
+}
+function handleExitMagnet(e){
+  e.preventDefault();
+  postForm(e.target).finally(() => {
+    e.target.style.display = 'none';
+    document.getElementById('exit-success').style.display = 'block';
+    setTimeout(closeExit, 2200);
+  });
+}
+
+/* ── Scroll reveal ── */
+(function(){
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+
+/* ── Animated stat counters ── */
+(function(){
+  function animateCount(el){
+    const raw = el.textContent.trim();
+    const match = raw.match(/([\d,]+)/);
+    if (!match) return;
+    const end = parseInt(match[1].replace(/,/g,''),10);
+    const prefix = raw.slice(0, raw.indexOf(match[1]));
+    const suffix = raw.slice(raw.indexOf(match[1]) + match[1].length);
+    const start = performance.now();
+    function tick(now){
+      const t = Math.min((now-start)/1400, 1);
+      const ease = 1 - Math.pow(1-t, 3);
+      el.textContent = prefix + Math.round(ease*end).toLocaleString() + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.querySelectorAll('.stat-number').forEach(animateCount);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.stats-bar').forEach(el => obs.observe(el));
+})();
+
+/* ── Smooth-scroll with nav offset ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e){
+    const id = this.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    closeMenu();
+    const top = target.getBoundingClientRect().top + window.scrollY - 78;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ── WhatsApp tooltip nudge (once, after 12s) ── */
+setTimeout(() => {
+  const tip = document.getElementById('waTooltip');
+  tip.classList.add('show');
+  setTimeout(() => tip.classList.remove('show'), 4500);
+}, 12000);
+
+/* ── Exit-intent popup (desktop, once per session) ── */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch devices
+  let shown = false;
+  try { shown = sessionStorage.getItem('zb-exit-shown') === '1'; } catch(e){}
+  if (shown) return;
+  document.addEventListener('mouseout', function handler(e){
+    if (e.clientY <= 0 && !e.relatedTarget){
+      document.getElementById('exitOverlay').classList.add('show');
+      try { sessionStorage.setItem('zb-exit-shown','1'); } catch(err){}
+      document.removeEventListener('mouseout', handler);
+    }
+  });
+})();
+function closeExit(){ document.getElementById('exitOverlay').classList.remove('show'); }
+document.getElementById('exitOverlay').addEventListener('click', function(e){ if (e.target === this) closeExit(); });
+</script>
+
+<!-- Netlify form detection (hidden mirrors) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input name="name" /><input name="email" /><input name="service" /><textarea name="message"></textarea>
+</form>
+<form name="lead-magnet" netlify hidden>
+  <input name="email" />
+</form>
+
+</body>
+</html>

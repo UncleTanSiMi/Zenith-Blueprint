@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Videos — AI Video Generation Masterclass · Zenith Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --midnight: #FAF9F6;
+    --steel: #FFFFFF;
+    --gold: #0E7C66;
+    --gold-light: #0A5F4F;
+    --sage: #0E7C66;
+    --chalk: #11293E;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--midnight);
+    color: var(--chalk);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 70px; display: flex; align-items: center; background: rgba(250,249,246,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #E7E4DC; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
+  .logo-text .l1 { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.06em; color: #11293E; }
+  .logo-text .l2 { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 9.5px; letter-spacing: 0.42em; color: #0E7C66; }
+
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 14px; color: #46586A; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #0E7C66; }
+  .nav-links a.active { color: #0E7C66; }
+
+  .nav-cta { margin-left: 8px; padding: 10px 22px; font-size: 14px; font-family: 'Sora', sans-serif; font-weight: 700; color: #fff; background: #0E7C66; text-decoration: none; border-radius: 6px; transition: background 0.2s; }
+  .nav-cta:hover { background: #0A5F4F; }
+
+  .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-burger span { display: block; width: 24px; height: 2.5px; background: #11293E; margin: 5px 0; border-radius: 2px; transition: 0.25s; }
+
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 99; background: #fff; border-bottom: 1px solid #E7E4DC; box-shadow: 0 8px 24px rgba(17,41,62,0.08); padding: 12px 24px 24px; }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a { display: block; padding: 13px 4px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16px; color: #11293E; text-decoration: none; border-bottom: 1px solid #E7E4DC; }
+  .mobile-menu a:last-child { border-bottom: none; color: #0E7C66; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 160px max(60px, calc((100vw - 1140px) / 2)) 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(14,124,102,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(48px, 7vw, 90px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: #11293E;
+    margin-bottom: 20px;
+  }
+
+  .hero-title .accent {
+    color: var(--gold);
+    font-family: 'Sora', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(44px, 6.5vw, 86px);
+  }
+
+  .hero-sub {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(17,41,62,0.55);
+    max-width: 560px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(14,124,102,0.3), transparent);
+  }
+
+  /* ── GALLERY SECTION ── */
+  .gallery-section {
+    padding: 80px max(60px, calc((100vw - 1140px) / 2));
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: 0.04em;
+    color: #11293E;
+    margin-bottom: 48px;
+    line-height: 1;
+  }
+
+  /* ── VIDEO GRID ── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 960px;
+  }
+
+  .video-card {
+    position: relative;
+    background: var(--steel);
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 177.78%; /* 9:16 vertical */
+    height: 0;
+    overflow: hidden;
+    background: #111820;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Placeholder state */
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #111820 0%, #1a2535 100%);
+    gap: 12px;
+  }
+
+  .placeholder-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(14,124,102,0.15);
+    border: 1px solid rgba(14,124,102,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .placeholder-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(17,41,62,0.3);
+  }
+
+  .video-card-border {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .video-card:hover .video-card-border {
+    background: var(--gold);
+  }
+
+  /* ── SECOND CATEGORY ── */
+  .gallery-section.alt {
+    background: var(--steel);
+    padding: 80px max(60px, calc((100vw - 1140px) / 2));
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--midnight);
+    padding: 100px max(60px, calc((100vw - 1140px) / 2));
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(14,124,102,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .cta-eyebrow::before, .cta-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .cta-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: 0.03em;
+    color: #11293E;
+    margin-bottom: 16px;
+    line-height: 1;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-sub {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(17,41,62,0.55);
+    margin-bottom: 48px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    background: var(--gold);
+    padding: 16px 40px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--chalk);
+    padding: 16px 40px;
+    border: 1px solid rgba(17,41,62,0.25);
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--midnight);
+    border-top: 1px solid rgba(14,124,102,0.15);
+    padding: 48px 0 32px;
+  }
+
+  .footer-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; text-decoration: none; }
+  .footer-brand-wm { display: flex; flex-direction: column; line-height: 1; }
+  .footer-brand-wm .wt { font-family: 'Sora', sans-serif; font-size: 20px; letter-spacing: 0.12em; color: #11293E; display: block; }
+  .footer-brand-wm .wb { font-family: 'Sora', sans-serif; font-size: 10px; letter-spacing: 0.35em; color: var(--gold); display: block; }
+
+  .footer-tagline-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .footer-brand-desc { font-size: 13px; color: rgba(122,136,150,1); line-height: 1.7; }
+
+  .footer-col-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; color: rgba(122,136,150,1); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--chalk); }
+
+  .footer-bottom-bar {
+    border-top: 1px solid rgba(17,41,62,0.06);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom-bar p { font-size: 12px; color: rgba(122,136,150,1); }
+  .footer-uen { font-size: 12px; color: rgba(122,136,150,0.5); }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.5s ease forwards; }
+  .hero-title { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta   { display: none; }
+    .nav-burger { display: block; }
+    .video-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 16px 24px; }
+    .hero, .gallery-section, .gallery-section.alt, .cta-section { padding-left: 24px; padding-right: 24px; }
+    footer { padding: 32px 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .video-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .nav-right .btn-back span { display: none; }
+  }
+</style>
+
+<style>
+/* ── Clean & Light overrides ── */
+h1,h2,h3,h4,h5,.btn,.nav-cta{font-weight:700;}
+body{font-weight:400;}
+nav{background:rgba(250,249,246,0.92) !important;border-bottom:1px solid #E7E4DC !important;}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:200;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,0.45);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:30px;height:30px;fill:#fff;}
+</style>
+
+<style>
+/* ── Footer: navy brand band (matches homepage) ── */
+footer{background:#11293E !important;border-top:none !important;}
+footer .logo-text .l1{color:#FFFFFF !important;}
+footer .logo-text .l2{color:#4FB99F !important;}
+footer h4{color:#FFFFFF !important;}
+footer .footer-tagline,footer .footer-tagline-text{color:#4FB99F !important;}
+footer p,footer li,footer span,footer a{color:#9FB0C0;}
+footer a:hover{color:#FFFFFF !important;}
+.early-bird-banner p{color:#FFFFFF !important;}
+.early-bird-banner span{color:#D7EEE8 !important;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Zenith Blueprint Home">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 33 L20 9 L34 33" fill="none" stroke="#0E7C66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="5" r="3" fill="#0E7C66"/>
+      </svg>
+      <div class="logo-text">
+        <span class="l1">ZENITH</span>
+        <span class="l2">BLUEPRINT</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="ai-property-masterclass.html" class="active">AI Courses</a></li>
+      <li><a href="samples.html" style="color:#0E7C66;">Sample Videos</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="ai-property-masterclass.html#register" class="nav-cta">Reserve Your Seat</a>
+    <button class="nav-burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="index.html#about">About</a>
+  <a href="ai-property-masterclass.html">AI Courses</a>
+  <a href="samples.html">Sample Videos</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="ai-property-masterclass.html#register">Reserve Your Seat</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">AI Video Generation Masterclass</p>
+  <h1 class="hero-title">
+    See What's<br>
+    <span class="accent">Possible</span>
+  </h1>
+  <p class="hero-sub">Real outputs. Real properties. All produced using the exact AI tools you'll learn in the masterclass.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROPERTY VIDEOS -->
+<section class="gallery-section">
+  <p class="section-label">Category One</p>
+  <h2 class="section-title">PROPERTY LISTING VIDEOS</h2>
+
+  <div class="video-grid">
+
+    <!-- Video 1 — replace VIDEO_ID_1 with actual YouTube ID -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_1 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+    <!-- Video 2 — replace VIDEO_ID_2 -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_2 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+    <!-- Video 3 — replace VIDEO_ID_3 -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_3 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- UGC VIDEOS -->
+<section class="gallery-section alt">
+  <p class="section-label">Category Two</p>
+  <h2 class="section-title">AI-GENERATED CONTENT</h2>
+
+  <div class="video-grid">
+
+    <!-- Video 4 — replace VIDEO_ID_4 -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_4 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+    <!-- Video 5 — replace VIDEO_ID_5 -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_5 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+    <!-- Video 6 — replace VIDEO_ID_6 -->
+    <div class="video-card">
+      <div class="video-wrapper">
+        <!-- REPLACE: change src to https://www.youtube.com/embed/VIDEO_ID_6 -->
+        <div class="video-placeholder">
+          <div class="placeholder-icon">▶</div>
+          <span class="placeholder-text">Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-card-border"></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-eyebrow">Ready to Build Yours?</p>
+  <h2 class="cta-title">YOU COULD BE PRODUCING VIDEOS LIKE THESE IN ONE DAY</h2>
+  <p class="cta-sub">Join the AI Video Generation Masterclass and walk away with your first AI-produced listing video.</p>
+  <div class="cta-actions">
+    <a href="ai-property-masterclass.html#register" class="btn-primary">Reserve Your Seat</a>
+    <a href="ai-property-masterclass.html#pricing" class="btn-outline">View Pricing</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+
+      <div>
+        <a href="index.html" class="footer-brand-logo logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 33 L20 9 L34 33" fill="none" stroke="#4FB99F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="5" r="3" fill="#4FB99F"/>
+          </svg>
+          <div class="logo-text">
+            <span class="l1">ZENITH</span>
+            <span class="l2">BLUEPRINT</span>
+          </div>
+        </a>
+        <div class="footer-tagline-text">GROW. SUSTAIN. SCALE.</div>
+        <p class="footer-brand-desc">Singapore SME advisory — Sales &amp; Marketing, ESG transformation, and AI-powered productivity.</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="index.html#services">Sales &amp; Marketing</a></li>
+          <li><a href="index.html#services">ESG Consulting</a></li>
+          <li><a href="index.html#services">Corporate Training</a></li>
+          <li><a href="index.html#ai-course">AI Courses</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">AI Masterclass</div>
+        <ul>
+          <li><a href="ai-property-masterclass.html#curriculum">Curriculum</a></li>
+          <li><a href="ai-property-masterclass.html#pricing">Pricing</a></li>
+          <li><a href="samples.html">Sample Videos</a></li>
+          <li><a href="ai-property-masterclass.html#register">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="mailto:ai@zenith-blueprint.com">ai@zenith-blueprint.com</a></li>
+          <li><a href="tel:+6593290742">+65 9329 0742</a></li>
+          <li><a href="https://wa.me/6593290742" target="_blank">WhatsApp</a></li>
+          <li><a href="index.html#contact">Send Enquiry</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-bar">
+      <p>© 2026 Zenith Blueprint. All rights reserved.</p>
+      <span class="footer-uen">UEN: XXXXXXXX · zenith-blueprint.com</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%20found%20your%20website%20and%20would%20like%20to%20find%20out%20more" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 2.67c-7.35 0-13.33 5.98-13.33 13.33 0 2.35.62 4.65 1.79 6.68L2.67 29.33l6.81-1.79a13.27 13.27 0 0 0 6.56 1.73h.01c7.35 0 13.33-5.98 13.33-13.33S23.39 2.67 16.04 2.67zm0 24.36h-.01a11.05 11.05 0 0 1-5.63-1.54l-.4-.24-4.04 1.06 1.08-3.94-.26-.4a11.02 11.02 0 0 1-1.69-5.88c0-6.11 4.97-11.08 11.09-11.08 2.96 0 5.74 1.15 7.83 3.25a11.02 11.02 0 0 1 3.24 7.84c0 6.11-4.97 11.08-11.08 11.08zm6.08-8.3c-.33-.17-1.97-.97-2.28-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.3-.19.22-.39.25-.72.08-.33-.17-1.41-.52-2.68-1.66-.99-.88-1.66-1.97-1.85-2.31-.19-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.17-.19.22-.33.33-.56.11-.22.06-.42-.03-.58-.08-.17-.75-1.8-1.02-2.47-.27-.65-.55-.56-.75-.57h-.64c-.22 0-.58.08-.89.42-.3.33-1.16 1.13-1.16 2.77 0 1.63 1.19 3.21 1.36 3.43.17.22 2.35 3.58 5.69 5.02.8.34 1.42.55 1.9.7.8.26 1.53.22 2.1.13.64-.1 1.97-.81 2.25-1.59.28-.78.28-1.44.19-1.58-.08-.14-.3-.22-.63-.39z"/></svg>
+</a>
+
+</body>
+</html>

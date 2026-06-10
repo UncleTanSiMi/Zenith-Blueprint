@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Video Generation Masterclass — Zenith Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --midnight: #FAF9F6;
+    --steel: #FFFFFF;
+    --gold: #0E7C66;
+    --gold-light: #0A5F4F;
+    --sage: #0E7C66;
+    --chalk: #11293E;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--midnight);
+    color: var(--chalk);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 70px; display: flex; align-items: center; background: rgba(250,249,246,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #E7E4DC; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
+  .logo-text .l1 { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.06em; color: #11293E; }
+  .logo-text .l2 { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 9.5px; letter-spacing: 0.42em; color: #0E7C66; }
+
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 14px; color: #46586A; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #0E7C66; }
+  .nav-links a.active { color: #0E7C66; }
+
+  .nav-cta { margin-left: 8px; padding: 10px 22px; font-size: 14px; font-family: 'Sora', sans-serif; font-weight: 700; color: #fff; background: #0E7C66; text-decoration: none; border-radius: 6px; transition: background 0.2s; }
+  .nav-cta:hover { background: #0A5F4F; }
+
+  .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-burger span { display: block; width: 24px; height: 2.5px; background: #11293E; margin: 5px 0; border-radius: 2px; transition: 0.25s; }
+
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 99; background: #fff; border-bottom: 1px solid #E7E4DC; box-shadow: 0 8px 24px rgba(17,41,62,0.08); padding: 12px 24px 24px; }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a { display: block; padding: 13px 4px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16px; color: #11293E; text-decoration: none; border-bottom: 1px solid #E7E4DC; }
+  .mobile-menu a:last-child { border-bottom: none; color: #0E7C66; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px max(60px, calc((100vw - 1140px) / 2)) 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(14,124,102,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(14,124,102,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(56px, 9vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: #11293E;
+    max-width: 900px;
+    margin-bottom: 12px;
+  }
+
+  .hero-title .accent {
+    color: var(--gold);
+    font-family: 'Sora', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(52px, 8.5vw, 105px);
+  }
+
+  .hero-subtitle {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(17,41,62,0.65);
+    margin-bottom: 40px;
+    max-width: 620px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border: 1px solid rgba(14,124,102,0.35);
+    color: var(--gold);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    background: var(--gold);
+    padding: 16px 40px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--chalk);
+    padding: 16px 40px;
+    border: 1px solid rgba(17,41,62,0.25);
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Early bird banner */
+  .early-bird-banner {
+    background: linear-gradient(90deg, var(--sage), #3a6b5e);
+    padding: 14px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .early-bird-banner p {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #11293E;
+  }
+
+  .early-bird-banner span {
+    font-family: 'Sora', sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #c8e6c4;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px max(60px, calc((100vw - 1140px) / 2)); }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    letter-spacing: 0.04em;
+    color: #11293E;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(17,41,62,0.7);
+    max-width: 640px;
+  }
+
+  /* ── ABOUT / PITCH ── */
+  .pitch {
+    background: var(--steel);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pitch::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14,124,102,0.06) 0%, transparent 60%);
+  }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+  }
+
+  .pitch-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.6);
+    padding: 32px;
+    border-top: 2px solid var(--gold);
+  }
+
+  .stat-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(17,41,62,0.6);
+    text-transform: uppercase;
+  }
+
+  /* ── CURRICULUM ── */
+  .curriculum { background: var(--midnight); }
+
+  .curriculum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-top: 60px;
+    max-width: 1100px;
+  }
+
+  .module-card {
+    background: #FFFFFF; border: 1px solid #E7E4DC; box-shadow: 0 1px 3px rgba(17,41,62,0.06);
+    padding: 40px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+  }
+
+  .module-card:hover {
+    border-left-color: var(--gold);
+    background: #F2F7F5;
+  }
+
+  .module-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .module-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #11293E;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .module-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(17,41,62,0.6);
+  }
+
+  .module-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .tool-pill {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(14,124,102,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(14,124,102,0.2);
+  }
+
+  /* Half day note */
+  .halfday-note {
+    margin-top: 40px;
+    padding: 24px 32px;
+    border: 1px solid rgba(14,124,102,0.3);
+    background: rgba(14,124,102,0.06);
+    max-width: 1100px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .halfday-note .note-icon {
+    color: var(--sage);
+    font-size: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .halfday-note p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(17,41,62,0.65);
+  }
+
+  .halfday-note strong { color: var(--sage); }
+
+  /* ── PRICING ── */
+  .pricing {
+    background: var(--steel);
+  }
+
+  .pricing-tabs {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 14px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(14,124,102,0.2);
+    color: rgba(17,41,62,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: var(--gold);
+    color: var(--midnight);
+    border-color: var(--gold);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+    max-width: 900px;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.6);
+    padding: 48px 40px;
+    position: relative;
+    border-top: 2px solid rgba(14,124,102,0.2);
+    transition: border-color 0.3s;
+  }
+
+  .price-card:hover { border-top-color: var(--gold); }
+
+  .price-card.featured {
+    border-top-color: var(--gold);
+    background: rgba(255,255,255,0.85);
+  }
+
+  .price-format {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 24px;
+  }
+
+  .price-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #11293E;
+    margin-bottom: 8px;
+  }
+
+  .price-pax {
+    font-size: 12px;
+    color: rgba(17,41,62,0.4);
+    margin-bottom: 32px;
+  }
+
+  .price-amount {
+    margin-bottom: 8px;
+  }
+
+  .price-original {
+    font-size: 14px;
+    color: rgba(17,41,62,0.35);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-early {
+    font-family: 'Sora', sans-serif;
+    font-size: 52px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-early span {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: rgba(17,41,62,0.5);
+    font-weight: 300;
+  }
+
+  .price-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    background: var(--sage);
+    padding: 4px 10px;
+    margin-bottom: 28px;
+  }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 36px;
+  }
+
+  .price-features li {
+    font-size: 13px;
+    color: rgba(17,41,62,0.65);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(17,41,62,0.06);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .price-features li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── REQUIREMENTS ── */
+  .requirements {
+    background: var(--midnight);
+  }
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin-top: 60px;
+    max-width: 1100px;
+  }
+
+  .req-card {
+    background: #FFFFFF; border: 1px solid #E7E4DC;
+    padding: 36px;
+  }
+
+  .req-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .req-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #11293E;
+    margin-bottom: 10px;
+  }
+
+  .req-body {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(17,41,62,0.55);
+  }
+
+  /* ── DATES ── */
+  .dates { background: var(--steel); }
+
+  .dates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+    margin-top: 60px;
+    max-width: 900px;
+  }
+
+  .date-card {
+    background: rgba(255,255,255,0.5);
+    padding: 36px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .date-card:hover { border-left-color: var(--gold); }
+
+  .date-month {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 48px;
+  }
+
+  .date-day {
+    font-family: 'Sora', sans-serif;
+    font-size: 40px;
+    color: #11293E;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .date-info { flex: 1; }
+
+  .date-type {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+  }
+
+  .date-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    color: #11293E;
+    margin-bottom: 6px;
+  }
+
+  .date-detail {
+    font-size: 12px;
+    color: rgba(17,41,62,0.45);
+  }
+
+  .placeholder-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(14,124,102,0.3);
+    padding: 3px 8px;
+    margin-top: 8px;
+  }
+
+  /* ── PAYMENT ── */
+  .payment { background: var(--midnight); }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-top: 60px;
+    max-width: 800px;
+  }
+
+  .payment-card {
+    background: #FFFFFF; border: 1px solid #E7E4DC; box-shadow: 0 1px 3px rgba(17,41,62,0.06);
+    padding: 40px;
+    border-top: 2px solid rgba(14,124,102,0.2);
+  }
+
+  .payment-method {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .payment-detail {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(17,41,62,0.6);
+  }
+
+  .payment-note {
+    margin-top: 32px;
+    padding: 20px 28px;
+    border: 1px solid rgba(14,124,102,0.25);
+    background: rgba(14,124,102,0.05);
+    max-width: 800px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(17,41,62,0.55);
+  }
+
+  /* ── REGISTER ── */
+  .register {
+    background: var(--steel);
+    text-align: center;
+    padding: 120px max(60px, calc((100vw - 1140px) / 2));
+  }
+
+  .register .section-label {
+    justify-content: center;
+  }
+
+  .register .section-label::before { display: none; }
+
+  .register .section-title {
+    max-width: 700px;
+    margin: 0 auto 16px;
+  }
+
+  .register .section-body {
+    max-width: 520px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .register-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--midnight);
+    border-top: 1px solid rgba(14,124,102,0.15);
+    padding: 48px 0 32px;
+  }
+
+  .footer-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand-col {}
+  .footer-brand-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; text-decoration: none; }
+  .footer-brand-wm { display: flex; flex-direction: column; line-height: 1; }
+  .footer-brand-wm .wt { font-family: 'Sora', sans-serif; font-size: 20px; letter-spacing: 0.12em; color: #11293E; }
+  .footer-brand-wm .wb { font-family: 'Sora', sans-serif; font-size: 10px; letter-spacing: 0.35em; color: var(--gold); }
+
+  .footer-tagline-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    color: rgba(122,136,150,1);
+    line-height: 1.7;
+  }
+
+  .footer-col-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(122,136,150,1);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--chalk); }
+
+  .footer-bottom-bar {
+    border-top: 1px solid rgba(17,41,62,0.06);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom-bar p { font-size: 12px; color: rgba(122,136,150,1); }
+  .footer-uen { font-size: 12px; color: rgba(122,136,150,0.5); }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(14,124,102,0.3), transparent);
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease forwards; }
+  .hero-title { animation: fadeUp 0.6s 0.15s ease both; }
+  .hero-subtitle { animation: fadeUp 0.6s 0.25s ease both; }
+  .hero-tags { animation: fadeUp 0.6s 0.35s ease both; }
+  .hero-actions { animation: fadeUp 0.6s 0.45s ease both; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta   { display: none; }
+    .nav-burger { display: block; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    section { padding: 70px 24px; }
+    .hero { padding: 120px 24px 70px; }
+    .pitch-grid, .curriculum-grid, .req-grid,
+    .pricing-grid, .dates-grid, .payment-grid {
+      grid-template-columns: 1fr;
+    }
+    footer { padding: 40px 24px; }
+    .footer-contact { text-align: left; }
+    .early-bird-banner { padding: 14px 24px; flex-direction: column; gap: 4px; text-align: center; }
+  }
+</style>
+
+<style>
+/* ── Clean & Light overrides ── */
+h1,h2,h3,h4,h5,.btn,.nav-cta{font-weight:700;}
+body{font-weight:400;}
+nav{background:rgba(250,249,246,0.92) !important;border-bottom:1px solid #E7E4DC !important;}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:200;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,0.45);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:30px;height:30px;fill:#fff;}
+</style>
+
+<style>
+/* ── Footer: navy brand band (matches homepage) ── */
+footer{background:#11293E !important;border-top:none !important;}
+footer .logo-text .l1{color:#FFFFFF !important;}
+footer .logo-text .l2{color:#4FB99F !important;}
+footer h4{color:#FFFFFF !important;}
+footer .footer-tagline,footer .footer-tagline-text{color:#4FB99F !important;}
+footer p,footer li,footer span,footer a{color:#9FB0C0;}
+footer a:hover{color:#FFFFFF !important;}
+.early-bird-banner p{color:#FFFFFF !important;}
+.early-bird-banner span{color:#D7EEE8 !important;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Zenith Blueprint Home">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 33 L20 9 L34 33" fill="none" stroke="#0E7C66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="5" r="3" fill="#0E7C66"/>
+      </svg>
+      <div class="logo-text">
+        <span class="l1">ZENITH</span>
+        <span class="l2">BLUEPRINT</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#ai-course" class="active">AI Courses</a></li>
+      <li><a href="samples.html">Sample Videos</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="#register" class="nav-cta">Reserve Your Seat</a>
+    <button class="nav-burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#ai-course">AI Courses</a>
+  <a href="samples.html">Sample Videos</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="#register">Reserve Your Seat</a>
+</div>
+
+<!-- EARLY BIRD BANNER -->
+<div class="early-bird-banner">
+  <p>🎯 Early Bird — 15% Off</p>
+  <span>First 4 runs only. Limited seats per cohort.</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Zenith Blueprint Presents</p>
+  <h1 class="hero-title">
+    AI Video<br>
+    <span class="accent">Generation Masterclass</span>
+  </h1>
+  <p class="hero-subtitle">Stop outsourcing your marketing. Learn to produce scroll-stopping AI videos — in a single day.</p>
+  <div class="hero-tags">
+    <span class="tag">For Creators & Business Owners</span>
+    <span class="tag">Full Day & Half Day</span>
+    <span class="tag">F2F & Online</span>
+    <span class="tag">Singapore</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary">View Pricing</a>
+    <a href="#curriculum" class="btn-secondary">See Curriculum</a>
+    <a href="samples.html" class="btn-secondary">Watch Sample Videos</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PITCH -->
+<section class="pitch">
+  <div class="pitch-grid">
+    <div>
+      <p class="section-label">Why This Workshop</p>
+      <h2 class="section-title">YOUR BRAND DESERVES BETTER THAN A PHONE SNAPSHOT</h2>
+      <p class="section-body" style="margin-bottom:24px;">
+        In today's market, video is no longer optional — it's the difference between a brand that gets attention and one that gets scrolled past. But professional video production is expensive, slow, and completely out of your control.
+      </p>
+      <p class="section-body">
+        This masterclass puts the entire production pipeline in your hands. You'll walk away knowing how to brief AI tools, generate cinematic visuals, and stitch together a polished AI video — without a videographer, without an agency, and without a massive budget.
+      </p>
+    </div>
+    <div class="pitch-stats">
+      <div class="stat-card">
+        <div class="stat-num">73%</div>
+        <div class="stat-label">of buyers say video influenced their decision to enquire</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4×</div>
+        <div class="stat-label">more enquiries for listings with video vs static photos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1 Day</div>
+        <div class="stat-label">to go from zero to producing your own AI-generated videos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">prior video editing or design experience required</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <p class="section-label">What You'll Learn</p>
+  <h2 class="section-title">THE FULL PRODUCTION PIPELINE</h2>
+  <p class="section-body">From concept to final cut — you'll build a real AI-generated video during the session.</p>
+
+  <div class="curriculum-grid">
+    <div class="module-card">
+      <div class="module-num">Module 01</div>
+      <div class="module-title">AI Prompting for Video Marketing</div>
+      <div class="module-desc">Master the fundamentals of prompting AI tools effectively. Learn how to brief AI the same way you'd brief a creative director — with context, tone, and intent — to get outputs that actually reflect your brand's unique selling points.</div>
+      <div class="module-tools">
+        <span class="tool-pill">ChatGPT</span>
+        <span class="tool-pill">Gemini</span>
+        <span class="tool-pill">Prompt Frameworks</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-num">Module 02</div>
+      <div class="module-title">Creative Direction & Storyboarding with AI</div>
+      <div class="module-desc">Use AI to brainstorm video concepts tailored to your brand or product. Generate shot lists, visual moods, and narrative arcs that resonate with your target audience.</div>
+      <div class="module-tools">
+        <span class="tool-pill">Gemini</span>
+        <span class="tool-pill">ChatGPT</span>
+        <span class="tool-pill">Storyboard Generation</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-num">Module 03</div>
+      <div class="module-title">AI Image Generation</div>
+      <div class="module-desc">Generate photorealistic visuals, lifestyle imagery, and ambient scenes that complement your actual photos. Learn staging prompts, lighting cues, and how to maintain visual consistency across a video.</div>
+      <div class="module-tools">
+        <span class="tool-pill">Gemini Pro</span>
+        <span class="tool-pill">ChatGPT / DALL·E</span>
+        <span class="tool-pill">Image Prompting</span>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-num">Module 04</div>
+      <div class="module-title">AI Video Generation with Google Flow & Veo</div>
+      <div class="module-desc">Turn your storyboard and images into actual video clips using Google's cutting-edge Veo model via Flow. Learn clip duration, motion style, and how to generate multiple versions to get the best output for your project.</div>
+      <div class="module-tools">
+        <span class="tool-pill">Google Flow</span>
+        <span class="tool-pill">Veo</span>
+        <span class="tool-pill">Video Prompting</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="grid-column: 1 / -1;">
+      <div class="module-num">Module 05 — Full Day Only</div>
+      <div class="module-title">Editing & Final Assembly in CapCut</div>
+      <div class="module-desc">Stitch your AI-generated clips into a polished, shareable property video. Learn how to add captions, transitions, background music, and subtitles optimised for Instagram Reels, TikTok, and WhatsApp sharing. You'll leave with a completed video ready to post.</div>
+      <div class="module-tools">
+        <span class="tool-pill">CapCut</span>
+        <span class="tool-pill">Reels / TikTok Format</span>
+        <span class="tool-pill">Caption & Music</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="halfday-note">
+    <span class="note-icon">ℹ</span>
+    <p><strong>Half Day option</strong> covers Modules 01–04 (prompting, creative direction, image gen, and video gen). Module 05 (CapCut editing) is exclusive to the Full Day programme. Both formats include hands-on practice time.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <p class="section-label">Investment</p>
+  <h2 class="section-title">CHOOSE YOUR FORMAT</h2>
+  <p class="section-body">All prices are per participant. Early bird rate applies to the first 4 cohort runs only.</p>
+
+  <div class="pricing-tabs">
+    <button class="tab-btn active" onclick="showTab('fullday')">Full Day</button>
+    <button class="tab-btn" onclick="showTab('halfday')">Half Day</button>
+  </div>
+
+  <!-- FULL DAY -->
+  <div class="tab-panel active" id="fullday">
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <div class="price-format">Face to Face</div>
+        <div class="price-name">In-Person Workshop</div>
+        <div class="price-pax">Maximum 4 participants · Singapore</div>
+        <div class="price-amount">
+          <div class="price-original">S$380 / pax</div>
+          <div class="price-early">S$320 <span>/ pax</span></div>
+        </div>
+        <div class="price-badge">15% Early Bird</div>
+        <ul class="price-features">
+          <li>All 5 modules including CapCut editing</li>
+          <li>Hands-on practice with live feedback</li>
+          <li>Small group — max 4 participants</li>
+          <li>Venue details provided upon payment</li>
+          <li>Full day (approx. 9am – 5pm)</li>
+          <li>Gemini Pro subscription required</li>
+        </ul>
+        <a href="#register" class="btn-primary" style="width:100%; text-align:center;">Reserve F2F Seat</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-format">Online · Zoom</div>
+        <div class="price-name">Virtual Workshop</div>
+        <div class="price-pax">Maximum 10 participants · Zoom</div>
+        <div class="price-amount">
+          <div class="price-original">S$220 / pax</div>
+          <div class="price-early">S$190 <span>/ pax</span></div>
+        </div>
+        <div class="price-badge">15% Early Bird</div>
+        <ul class="price-features">
+          <li>All 5 modules including CapCut editing</li>
+          <li>Live instruction via Zoom</li>
+          <li>Up to 10 participants per cohort</li>
+          <li>Zoom link provided upon payment</li>
+          <li>Full day (approx. 9am – 5pm)</li>
+          <li>Gemini Pro subscription required</li>
+        </ul>
+        <a href="#register" class="btn-primary" style="width:100%; text-align:center;">Reserve Online Seat</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HALF DAY -->
+  <div class="tab-panel" id="halfday">
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <div class="price-format">Face to Face</div>
+        <div class="price-name">In-Person Workshop</div>
+        <div class="price-pax">Maximum 4 participants · Singapore</div>
+        <div class="price-amount">
+          <div class="price-original">S$250 / pax</div>
+          <div class="price-early">S$210 <span>/ pax</span></div>
+        </div>
+        <div class="price-badge">15% Early Bird</div>
+        <ul class="price-features">
+          <li>Modules 01–04 (prompting to video gen)</li>
+          <li>Hands-on practice with live feedback</li>
+          <li>Small group — max 4 participants</li>
+          <li>Venue details provided upon payment</li>
+          <li>Half day (approx. 9am – 1pm)</li>
+          <li>Gemini Pro subscription required</li>
+        </ul>
+        <a href="#register" class="btn-primary" style="width:100%; text-align:center;">Reserve F2F Seat</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-format">Online · Zoom</div>
+        <div class="price-name">Virtual Workshop</div>
+        <div class="price-pax">Maximum 10 participants · Zoom</div>
+        <div class="price-amount">
+          <div class="price-original">S$150 / pax</div>
+          <div class="price-early">S$130 <span>/ pax</span></div>
+        </div>
+        <div class="price-badge">15% Early Bird</div>
+        <ul class="price-features">
+          <li>Modules 01–04 (prompting to video gen)</li>
+          <li>Live instruction via Zoom</li>
+          <li>Up to 10 participants per cohort</li>
+          <li>Zoom link provided upon payment</li>
+          <li>Half day (approx. 9am – 1pm)</li>
+          <li>Gemini Pro subscription required</li>
+        </ul>
+        <a href="#register" class="btn-primary" style="width:100%; text-align:center;">Reserve Online Seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REQUIREMENTS -->
+<section class="requirements" id="requirements">
+  <p class="section-label">Before You Register</p>
+  <h2 class="section-title">WHAT YOU NEED</h2>
+
+  <div class="req-grid">
+    <div class="req-card">
+      <div class="req-icon">💎</div>
+      <div class="req-title">Google Gemini Pro</div>
+      <div class="req-body">An active Google Gemini Pro subscription is required — this is needed to access Google Flow for AI video generation. You can sign up for the 1-month free trial before the workshop, or subscribe at approx. S$28/month. Serious participants will find it worth keeping.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">💻</div>
+      <div class="req-title">Laptop & Stable Internet</div>
+      <div class="req-body">Bring a laptop (Mac or Windows) with a modern browser. For F2F participants, WiFi is provided. For online participants, ensure a stable broadband connection — AI video generation is bandwidth intensive.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">📱</div>
+      <div class="req-title">CapCut (Full Day Only)</div>
+      <div class="req-body">Download the free CapCut desktop app before the session. No prior editing experience needed — we'll walk through everything from scratch. Full Day participants only.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">🎯</div>
+      <div class="req-title">One Project to Work With</div>
+      <div class="req-body">Come prepared with one real project — photos, key features, and your target audience. You'll use this as your working brief during the session and leave with an actual video for it.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">🔑</div>
+      <div class="req-title">ChatGPT Account</div>
+      <div class="req-body">A paid ChatGPT account is recommended. A free account works if you don't have the paid version, but some features may be limited.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">📍</div>
+      <div class="req-title">Venue & Zoom Details</div>
+      <div class="req-body">Exact venue address (F2F) and Zoom link (online) will be provided to confirmed participants only, after payment has been received and verified.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DATES -->
+<section class="dates" id="dates">
+  <p class="section-label">Upcoming Runs</p>
+  <h2 class="section-title">RESERVE YOUR COHORT</h2>
+  <p class="section-body">Dates will be confirmed and updated shortly. Register your interest now to be first notified.</p>
+
+  <div class="dates-grid">
+    <div class="date-card">
+      <div>
+        <div class="date-month">TBC</div>
+        <div class="date-day">—</div>
+      </div>
+      <div class="date-info">
+        <div class="date-type">Cohort 01 · F2F</div>
+        <div class="date-title">Full Day · In-Person</div>
+        <div class="date-detail">Max 4 pax · Early Bird Pricing</div>
+        <span class="placeholder-badge">Date TBC</span>
+      </div>
+    </div>
+
+    <div class="date-card">
+      <div>
+        <div class="date-month">TBC</div>
+        <div class="date-day">—</div>
+      </div>
+      <div class="date-info">
+        <div class="date-type">Cohort 02 · Online</div>
+        <div class="date-title">Full Day · Virtual</div>
+        <div class="date-detail">Max 10 pax · Early Bird Pricing</div>
+        <span class="placeholder-badge">Date TBC</span>
+      </div>
+    </div>
+
+    <div class="date-card">
+      <div>
+        <div class="date-month">TBC</div>
+        <div class="date-day">—</div>
+      </div>
+      <div class="date-info">
+        <div class="date-type">Cohort 03 · F2F</div>
+        <div class="date-title">Half Day · In-Person</div>
+        <div class="date-detail">Max 4 pax · Early Bird Pricing</div>
+        <span class="placeholder-badge">Date TBC</span>
+      </div>
+    </div>
+
+    <div class="date-card">
+      <div>
+        <div class="date-month">TBC</div>
+        <div class="date-day">—</div>
+      </div>
+      <div class="date-info">
+        <div class="date-type">Cohort 04 · Online</div>
+        <div class="date-title">Half Day · Virtual</div>
+        <div class="date-detail">Max 10 pax · Early Bird Pricing</div>
+        <span class="placeholder-badge">Date TBC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYMENT -->
+<section class="payment" id="payment">
+  <p class="section-label">Payment</p>
+  <h2 class="section-title">HOW TO PAY</h2>
+  <p class="section-body">Payment secures your seat. Venue and Zoom details are released only after payment is confirmed.</p>
+
+  <div class="payment-grid">
+    <div class="payment-card">
+      <div class="payment-method">PayNow / PayLah!</div>
+      <div class="payment-detail">
+        Transfer to mobile number or UEN.<br>
+        Include your <strong style="color:var(--chalk);">full name</strong> and <strong style="color:var(--chalk);">cohort date</strong> in the reference field.<br><br>
+        PayNow UEN: <strong style="color:var(--gold);">XXXXXXXX</strong><br>
+        PayNow Mobile: <strong style="color:var(--gold);">+65 9329 0742</strong>
+      </div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-method">Bank Transfer</div>
+      <div class="payment-detail">
+        Bank transfer details will be provided upon request.<br><br>
+        Registered company:<br>
+        <strong style="color:var(--chalk);">Zenith Blueprint</strong><br>
+        UEN: <strong style="color:var(--gold);">XXXXXXXX</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-note">
+    ⚠ Seats are only confirmed upon receipt of payment. Please send a screenshot of your transfer to <strong style="color:var(--chalk);">ai@zenith-blueprint.com</strong> with your name, preferred cohort, and format (F2F / Online). You'll receive a confirmation within 24 hours.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REGISTER CTA -->
+<section class="register" id="register">
+  <p class="section-label">Get Started</p>
+  <h2 class="section-title">READY TO PRODUCE YOUR FIRST AI-GENERATED VIDEO?</h2>
+  <p class="section-body">Early bird pricing is available for the first 4 cohort runs only. Seats are limited — especially for F2F. Don't wait on this one.</p>
+  <div class="register-actions">
+    <a href="mailto:ai@zenith-blueprint.com?subject=AI Video Generation Masterclass — Registration" class="btn-primary">Register via Email</a>
+    <a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%27m%20interested%20in%20the%20AI%20Video%20Generation%20Masterclass" class="btn-secondary" target="_blank">WhatsApp Enquiry</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-brand-logo logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 33 L20 9 L34 33" fill="none" stroke="#4FB99F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="5" r="3" fill="#4FB99F"/>
+          </svg>
+          <div class="logo-text">
+            <span class="l1">ZENITH</span>
+            <span class="l2">BLUEPRINT</span>
+          </div>
+        </a>
+        <div class="footer-tagline-text">GROW. SUSTAIN. SCALE.</div>
+        <p class="footer-brand-desc">Singapore SME advisory — Sales &amp; Marketing, ESG transformation, and AI-powered productivity.</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="index.html#services">Sales &amp; Marketing</a></li>
+          <li><a href="index.html#services">ESG Consulting</a></li>
+          <li><a href="index.html#services">Corporate Training</a></li>
+          <li><a href="index.html#ai-course">AI Courses</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">This Course</div>
+        <ul>
+          <li><a href="#curriculum">Curriculum</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="samples.html">Sample Videos</a></li>
+          <li><a href="#register">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="mailto:ai@zenith-blueprint.com">ai@zenith-blueprint.com</a></li>
+          <li><a href="tel:+6593290742">+65 9329 0742</a></li>
+          <li><a href="https://wa.me/6593290742" target="_blank">WhatsApp</a></li>
+          <li><a href="index.html#contact">Send Enquiry</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-bar">
+      <p>© 2026 Zenith Blueprint. All rights reserved.</p>
+      <span class="footer-uen">UEN: XXXXXXXX · zenith-blueprint.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/6593290742?text=Hi%20Francis%2C%20I%20found%20your%20website%20and%20would%20like%20to%20find%20out%20more" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 2.67c-7.35 0-13.33 5.98-13.33 13.33 0 2.35.62 4.65 1.79 6.68L2.67 29.33l6.81-1.79a13.27 13.27 0 0 0 6.56 1.73h.01c7.35 0 13.33-5.98 13.33-13.33S23.39 2.67 16.04 2.67zm0 24.36h-.01a11.05 11.05 0 0 1-5.63-1.54l-.4-.24-4.04 1.06 1.08-3.94-.26-.4a11.02 11.02 0 0 1-1.69-5.88c0-6.11 4.97-11.08 11.09-11.08 2.96 0 5.74 1.15 7.83 3.25a11.02 11.02 0 0 1 3.24 7.84c0 6.11-4.97 11.08-11.08 11.08zm6.08-8.3c-.33-.17-1.97-.97-2.28-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.3-.19.22-.39.25-.72.08-.33-.17-1.41-.52-2.68-1.66-.99-.88-1.66-1.97-1.85-2.31-.19-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.17-.19.22-.33.33-.56.11-.22.06-.42-.03-.58-.08-.17-.75-1.8-1.02-2.47-.27-.65-.55-.56-.75-.57h-.64c-.22 0-.58.08-.89.42-.3.33-1.16 1.13-1.16 2.77 0 1.63 1.19 3.21 1.36 3.43.17.22 2.35 3.58 5.69 5.02.8.34 1.42.55 1.9.7.8.26 1.53.22 2.1.13.64-.1 1.97-.81 2.25-1.59.28-.78.28-1.44.19-1.58-.08-.14-.3-.22-.63-.39z"/></svg>
+</a>
+
+</body>
+</html>
