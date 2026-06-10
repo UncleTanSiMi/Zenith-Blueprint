@@ -486,20 +486,28 @@ let filteredPosts = [];
 let shownCount    = 0;
 let activeLabel   = 'all';
 
-/* ─── FETCH ─── */
-async function fetchPosts() {
-  const url = `https://www.blogger.com/feeds/${BLOG_ID}/posts/default?alt=json&max-results=${MAX_FETCH}`;
-  try {
-    const res  = await fetch(url);
-    if (!res.ok) throw new Error('Network error');
-    const data = await res.json();
-    const entries = data.feed.entry || [];
-    allPosts = entries.map(parseEntry);
-    buildFilters();
-    renderPosts('all');
-  } catch (err) {
-    showError();
-  }
+/* ─── FETCH via JSONP (bypasses CORS) ─── */
+function fetchPosts() {
+  window._bloggerCallback = function(data) {
+    try {
+      const entries = data.feed.entry || [];
+      allPosts = entries.map(parseEntry);
+      buildFilters();
+      renderPosts('all');
+    } catch(e) {
+      showError();
+    }
+    // Clean up
+    delete window._bloggerCallback;
+    const s = document.getElementById('_bloggerScript');
+    if (s) s.remove();
+  };
+
+  const script = document.createElement('script');
+  script.id  = '_bloggerScript';
+  script.src = `https://www.blogger.com/feeds/${BLOG_ID}/posts/default?alt=json-in-script&callback=_bloggerCallback&max-results=${MAX_FETCH}`;
+  script.onerror = () => showError();
+  document.head.appendChild(script);
 }
 
 /* ─── PARSE ONE ENTRY ─── */
