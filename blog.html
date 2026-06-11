@@ -518,14 +518,13 @@ function parseEntry(e) {
   const link    = (e.link || []).find(l => l.rel === 'alternate')?.href || '#';
 
   // thumbnail — Blogger puts it in media$thumbnail or as the first img in content
-  // Replace any size token (s72-c, s400, etc.) with s1200 for crisp display
+  // Use s0 = original full resolution (no upscaling blur)
   let thumb = e.media$thumbnail?.url
-    ?.replace(/\/s\d+(-c)?\//g, '/s1200/')   // path-style: /s72-c/
-    ?.replace(/=s\d+(-c)?(&|$)/g, '=s1200$2') // param-style: =s72-c or =s72
-    || null;
+    ? upgradeThumb(e.media$thumbnail.url)
+    : null;
   if (!thumb && e.content?.$t) {
     const m = e.content.$t.match(/<img[^>]+src=["']([^"']+)["']/i);
-    if (m) thumb = m[1];
+    if (m) thumb = upgradeThumb(m[1]);
   }
 
   // labels/categories
@@ -639,6 +638,20 @@ function showError() {
       <p>Couldn't load posts right now. Please try refreshing, or visit the blog directly.</p>
       <a href="https://www.blogger.com/blog/posts/${BLOG_ID}" target="_blank" rel="noopener" class="btn btn-outline">Visit Blog →</a>
     </div>`;
+}
+
+/* ─── THUMB UPGRADE ─── */
+// Blogger serves tiny thumbnails by default. This rewrites the URL to s0
+// (original upload resolution) regardless of the URL format used.
+function upgradeThumb(url) {
+  if (!url) return null;
+  // Format A: path segment  …/s72-c/image.jpg  or  …/s400/image.jpg
+  url = url.replace(/\/s\d+(-c)?(\/)/g, '/s1600$2');
+  // Format B: query param   …=s72-c  or  …=s72
+  url = url.replace(/=s\d+(-c)?(&|$)/, '=s1600$2');
+  // Format C: Google blogger CDN w= param  ?w=72&h=72
+  url = url.replace(/[?&]w=\d+(&h=\d+)?/, '');
+  return url;
 }
 
 /* ─── HELPERS ─── */
